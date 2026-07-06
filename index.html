@@ -831,25 +831,25 @@
         <div class="trust-grid">
           <div>
             <p class="eyebrow">// privacy</p>
-            <h2 id="privacy-heading">No telemetry. Full stop.</h2>
-            <p class="lead">Never phones home. Your audio leaves your machine only to the provider you picked.</p>
+            <h2 id="privacy-heading">Your audio goes straight to your provider.</h2>
+            <p class="lead">You pick the speech-to-text service and use your own API key. QuickDictate streams your mic to that service and types back what it hears — the same call you'd make yourself, just wired to a hotkey.</p>
             <ul class="trust-list">
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>No account, no server of ours</b><span class="d">Nothing to sign up for, and nothing of ours between you and your provider.</span></div>
+                <div><b>Bring your own provider</b><span class="d">You connect a key from a service you already use — there's no separate QuickDictate account or login.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Optional update check, once a day</b><span class="d">Size + SHA-256 verified against GitHub releases. Nothing installs without your OK.</span></div>
+                <div><b>Updates on your terms</b><span class="d">An optional once-a-day check for new GitHub releases; downloads are size- and SHA-256-verified and install when you say so.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Free &amp; MIT-licensed</b><span class="d">Read every line, fork it, build your own. Nothing hidden behind the tray icon.</span></div>
+                <div><b>Open source, MIT-licensed</b><span class="d">The full source lives on GitHub — browse it, fork it, or build your own.</span></div>
               </li>
             </ul>
           </div>
 
-          <div class="trust-diagram" role="img" aria-label="Diagram: your microphone connects only to your chosen speech-to-text provider; QuickDictate has no server in between and receives nothing">
+          <div class="trust-diagram" role="img" aria-label="Diagram: your microphone streams to the speech-to-text provider you chose, and the transcript is typed into your focused window.">
             <div class="flow-row">
               <span class="flow-node you">your mic</span>
               <span class="flow-arrow">──▶</span>
@@ -857,7 +857,7 @@
               <span class="flow-arrow">──▶</span>
               <span class="flow-node provider">your provider</span>
             </div>
-            <div class="flow-x">✕ no lunarwerx server in this path</div>
+            <div class="flow-x">your audio out · your text back</div>
             <div class="flow-row">
               <span class="flow-node">transcript</span>
               <span class="flow-arrow">──▶</span>
