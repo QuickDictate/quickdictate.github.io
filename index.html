@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickDictate — Speech-to-text that lives in your tray</title>
+<meta name="description" content="QuickDictate is a Windows tray app for speech-to-text dictation. Hold or tap a hotkey, talk, and the transcript types into whatever window has focus. Bring your own STT API key — no subscription, no account, no server in between.">
+<link rel="icon" href="assets/icon-256.png" type="image/png">
+<meta property="og:title" content="QuickDictate — Press a key, talk, and your words land wherever your cursor is">
+<meta property="og:description" content="A Windows tray app for speech-to-text dictation. Bring your own API key (ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, Google). No subscription. No telemetry. Free & MIT-licensed.">
+<meta property="og:image" content="assets/icon-256.png">
+<meta property="og:type" content="website">
+<style>
+
+  /* ---------- Reset & base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  body { margin: 0; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  :root{
+    /* ---- color tokens ---- */
+    --bg:        #0F1B30;
+    --surface:   #16273F;
+    --surface-2: #1B2E4C;
+    --border:    #2A3D5C;
+    --ink:       #F7F9FC;
+    --muted:     #93A2BC;
+    --faint:     #64748B;
+    --coral:     #D46662;
+    --coral-dim: #C0504D;
+    --azure:     #2E7DF6;
+    --azure-dim: #2665CC;
+
+    /* ---- type tokens ---- */
+    --font-display: -apple-system, "Segoe UI Semibold", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-body: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "Cascadia Code", "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+    --container: 1120px;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  body{
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* faint ambient glow behind everything */
+  body {
+    background-image:
+      radial-gradient(ellipse 900px 500px at 12% -10%, rgba(46,125,246,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(192,80,77,0.10), transparent 55%),
+      linear-gradient(var(--bg), var(--bg));
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  p { margin: 0; }
+
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  section { position: relative; }
+
+  ::selection { background: var(--coral-dim); color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid var(--azure);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Eyebrow / mono labels ---------- */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--coral);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--coral);
+    border-radius: 1px;
+    box-shadow: 0 0 8px rgba(212,102,98,0.8);
+    flex: none;
+  }
+
+  /* ---------- kbd chips ---------- */
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: linear-gradient(180deg, #24385a, #182a48);
+    border: 1px solid #3a5278;
+    border-bottom-width: 2px;
+    color: var(--ink);
+    padding: 3px 9px 4px;
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    white-space: nowrap;
+  }
+
+  /* ---------- Header / nav ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(15,27,48,0.82);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 14px;
+    gap: 20px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .brand img { width: 30px; height: 30px; border-radius: 7px; }
+  .brand-name { font-family: var(--font-mono); font-weight: 600; letter-spacing: -0.02em; }
+  .brand-name .dim { color: var(--muted); font-weight: 500; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.92rem;
+    transition: color .15s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--coral-dim);
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background .15s ease, transform .15s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--coral); transform: translateY(-1px); }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- Buttons (shared) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border: 1px solid transparent;
+  }
+  .btn svg { flex: none; }
+  .btn-primary {
+    background: var(--coral-dim);
+    color: #fff;
+    box-shadow: 0 8px 24px -8px rgba(192,80,77,0.55);
+  }
+  .btn-primary:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(192,80,77,0.65); }
+  .btn-ghost {
+    background: rgba(255,255,255,0.03);
+    color: var(--ink);
+    border-color: var(--border);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: #3d5478; transform: translateY(-2px); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-top: 88px;
+    padding-bottom: 72px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,460px);
+    gap: 56px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1.08;
+    margin-bottom: 22px;
+  }
+  .hero h1 .accent { color: var(--coral); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 1.14rem;
+    max-width: 54ch;
+    margin-bottom: 30px;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    color: var(--faint);
+    font-size: 0.86rem;
+    font-family: var(--font-mono);
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+  .hero-meta svg { flex: none; opacity: .8; }
+
+  /* ---- terminal mock in hero ---- */
+  .term {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .term-dot { width: 11px; height: 11px; border-radius: 50%; }
+  .term-dot.r { background: #E5645B; }
+  .term-dot.y { background: #E0AC4C; }
+  .term-dot.g { background: #4CB874; }
+  .term-title {
+    margin-inline: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+    transform: translateX(-18px);
+  }
+  .term-body {
+    padding: 22px 20px 26px;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+  }
+  .term-line { display: flex; gap: 10px; margin-bottom: 12px; }
+  .term-line:last-child { margin-bottom: 0; }
+  .term-prompt { color: var(--azure); flex: none; }
+  .term-tray { color: var(--muted); }
+  .term-hotkey-row { display: flex; align-items: center; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+  .term-out {
+    color: var(--ink);
+    border-left: 2px solid var(--coral-dim);
+    padding-left: 12px;
+    margin-top: 14px;
+  }
+  .caret {
+    display: inline-block;
+    width: 8px; height: 1.1em;
+    background: var(--coral);
+    vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+
+  /* ---------- Section shells ---------- */
+  .section { padding-block: 88px; }
+  .section-head {
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+  .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 14px; }
+  .section-head p { color: var(--muted); font-size: 1.05rem; }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    border: none;
+    margin: 0;
+  }
+
+  /* ---------- Feature grid ---------- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 24px;
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .card:hover { border-color: #3d5478; transform: translateY(-3px); background: var(--surface-2); }
+  .card-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    background: rgba(192,80,77,0.14);
+    color: var(--coral);
+  }
+  .card.blue .card-icon { background: rgba(46,125,246,0.14); color: var(--azure); }
+  .card h3 { font-size: 1.06rem; margin-bottom: 9px; }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+  .card.wide { grid-column: span 2; }
+
+  /* ---------- Config snippet ---------- */
+  .config-section .container {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .config-copy h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 16px; }
+  .config-copy p { color: var(--muted); margin-bottom: 16px; }
+  .config-copy ul { margin: 0 0 22px; padding-left: 0; list-style: none; display: grid; gap: 10px; }
+  .config-copy li { display: flex; gap: 10px; color: var(--muted); font-size: 0.95rem; align-items: flex-start; }
+  .config-copy li svg { flex: none; margin-top: 3px; color: var(--azure); }
+  .config-copy li b { color: var(--ink); font-weight: 600; }
+
+  .code-window {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 50px -20px rgba(0,0,0,0.55);
+  }
+  .code-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .code-filename {
+    margin-inline: auto;
+    transform: translateX(-18px);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  .copy-btn {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .copy-btn:hover { color: var(--ink); border-color: #3d5478; background: rgba(255,255,255,0.08); }
+  .copy-btn svg { flex: none; }
+  .code-body {
+    margin: 0;
+    padding: 22px 22px 26px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.87rem;
+    line-height: 1.7;
+  }
+  .code-body code { white-space: pre; }
+  .tok-punc { color: var(--faint); }
+  .tok-key { color: var(--azure); }
+  .tok-str { color: #E0AC4C; }
+  .tok-str.provider { color: var(--coral); }
+
+  /* ---------- Providers ---------- */
+  .provider-strip {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0,1fr));
+    gap: 14px;
+  }
+  .provider-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 12px;
+    text-align: center;
+  }
+  .provider-chip .p-name { font-weight: 700; font-size: 0.94rem; }
+  .provider-chip .p-tag { display:block; margin-top: 6px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); }
+  .provider-note {
+    margin-top: 26px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba(46,125,246,0.08);
+    border: 1px solid rgba(46,125,246,0.25);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .provider-note svg { flex: none; color: var(--azure); margin-top: 2px; }
+  .provider-note p { color: var(--muted); font-size: 0.94rem; }
+  .provider-note b { color: var(--ink); }
+
+  /* ---------- Screenshots ---------- */
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 32px;
+  }
+  .shot-window {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 50px -18px rgba(0,0,0,0.55);
+  }
+  .shot-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .shot-title {
+    margin-inline: auto;
+    transform: translateX(-18px);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  .shot-body { padding: 24px; display: flex; justify-content: center; background: radial-gradient(ellipse at top, rgba(46,125,246,0.06), transparent 70%); }
+  .shot-body img {
+    width: 100%;
+    max-width: 340px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .shot-caption { padding: 0 24px 22px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+
+  /* ---------- Trust / privacy ---------- */
+  .trust {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 52px;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+    gap: 48px;
+    align-items: center;
+  }
+  .trust h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); margin-bottom: 16px; }
+  .trust > .trust-grid > div > p.lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 8px; }
+  .trust-list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 16px; }
+  .trust-list li { display: flex; gap: 12px; align-items: flex-start; }
+  .trust-list svg { flex: none; color: var(--coral); margin-top: 3px; }
+  .trust-list b { display: block; color: var(--ink); font-size: 0.98rem; margin-bottom: 3px; }
+  .trust-list span.d { color: var(--muted); font-size: 0.9rem; }
+
+  .trust-diagram {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+  }
+  .flow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+  .flow-node {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--ink);
+    font-size: 0.82rem;
+  }
+  .flow-node.you { border-color: var(--azure); color: var(--azure); }
+  .flow-node.provider { border-color: var(--coral-dim); color: var(--coral); }
+  .flow-arrow { color: var(--faint); }
+  .flow-x { color: var(--faint); text-align: center; padding: 6px 0 10px 42px; font-size: 0.78rem; }
+
+  /* ---------- Final CTA ---------- */
+  .cta-final {
+    text-align: center;
+    padding-block: 96px;
+  }
+  .cta-final h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 18px; }
+  .cta-final p { color: var(--muted); font-size: 1.08rem; max-width: 52ch; margin: 0 auto 34px; }
+  .cta-final .hero-actions { justify-content: center; }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: 44px;
+  }
+  .footer-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo img { height: 22px; width: auto; }
+  .footer-links { display: flex; gap: 26px; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-links img { width: 17px; height: 17px; filter: invert(1) brightness(1.6); }
+  .footer-meta { color: var(--faint); font-size: 0.82rem; font-family: var(--font-mono); margin-top: 22px; text-align: center; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 40px; }
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .card.wide { grid-column: span 2; }
+    .config-section .container { grid-template-columns: 1fr; }
+    .config-copy { order: 1; }
+    .code-window { order: 2; }
+    .provider-strip { grid-template-columns: repeat(3, 1fr); }
+    .shots { grid-template-columns: 1fr; }
+    .trust { padding: 34px 26px; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 680px){
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .card.wide { grid-column: span 1; }
+    .provider-strip { grid-template-columns: repeat(2, 1fr); }
+    .section { padding-block: 60px; }
+    .hero { padding-bottom: 50px; }
+    .footer-grid { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Primary">
+    <a class="brand" href="#top">
+      <img src="assets/icon-256.png" alt="" width="30" height="30">
+      <span class="brand-name">QuickDictate<span class="dim">.exe</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#providers">Providers</a></li>
+      <li><a href="#config">Config</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="https://github.com/LunarWerxs/QuickDictate">Source</a></li>
+    </ul>
+    <a class="nav-cta" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero container" aria-labelledby="hero-heading">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">quickdictate · beta · windows 10/11 x64</p>
+        <h1 id="hero-heading">Press a key, talk, and your words land <span class="accent">wherever your cursor already is.</span></h1>
+        <p class="hero-sub">QuickDictate sits quietly in your Windows tray. Hold or tap a global hotkey, speak, and the transcript types itself into whatever window has focus — editor, chat box, email, terminal, any text field.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Download for Windows
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/LunarWerxs/QuickDictate">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C1 8.5 2.5 5 6 5c2 0 3.5 1.2 4 2 .5-.8 2-2 4-2 3.5 0 5 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.6"/></svg> Free &amp; MIT-licensed</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M8 3v3M16 3v3" stroke="currentColor" stroke-width="1.6"/></svg> No subscription, ever</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.6"/></svg> Zero telemetry</span>
+        </div>
+      </div>
+
+      <div class="term" role="img" aria-label="Mock terminal showing QuickDictate tray notification, hotkeys F13 to hold and F14 to toggle, and a live-transcribed line of text">
+        <div class="term-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="term-title">quickdictate — tray</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line"><span class="term-prompt">&gt;</span><span class="term-tray">QuickDictate running · tray icon active</span></div>
+          <div class="term-hotkey-row">
+            <span class="term-tray">hold</span> <kbd>F13</kbd>
+            <span class="term-tray" style="margin-left:10px;">toggle</span> <kbd>F14</kbd>
+          </div>
+          <div class="term-line"><span class="term-prompt">&gt;</span><span class="term-tray">listening… provider: deepgram</span></div>
+          <div class="term-out">remember to ship the release notes before end of day<span class="caret" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">// features</p>
+        <h2 id="features-heading">Built like a tool, not a product funnel.</h2>
+        <p>No accounts to create, no usage to meter. Just the parts a dictation tool actually needs.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="card">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-3 0h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Bring your own key</h3>
+          <p>Your STT provider key, your account, your usage. QuickDictate never bills you a cent — you already pay the provider directly, at their rate.</p>
+        </div>
+        <div class="card blue">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Types into any window</h3>
+          <p>Editor, chat box, email, terminal, browser field — QuickDictate uses OS-level clipboard and keystroke APIs to land text wherever focus already is.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <h3>Streams as you speak</h3>
+          <p>With streaming-capable providers, words paste live while you're still talking — no waiting for a final blob of text after the fact.</p>
+        </div>
+
+        <div class="card blue wide">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 20V10m0 0 5 5m-5-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 4h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3>Hold or toggle — your call</h3>
+          <p>Hold a key while you talk, or tap once to start and once to stop. Both hotkeys are fully rebindable in Settings; defaults are <kbd>F13</kbd> for hold and <kbd>F14</kbd> for toggle, chosen to stay clear of the keys you already use.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 12l4-4M5 12l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>"Scratch that"</h3>
+          <p>Say it out loud and the last pasted chunk quietly un-types itself. No reaching for the mouse mid-sentence.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 6l2 13h12l2-13M9 10v6m6-6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Fixes what it mishears</h3>
+          <p>A replacement table turns "chat gpt" into "ChatGPT", "github" into "GitHub" — whatever your vocabulary needs, corrected automatically on the way out.</p>
+        </div>
+        <div class="card blue wide">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="7" height="16" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="4" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <h3>Per-app profiles</h3>
+          <p>Different punctuation, spacing, and replacement rules depending on which app has focus — terse and code-safe in your editor, natural prose in chat, no manual switching required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ CONFIG SNIPPET ============ -->
+  <section class="section config-section" id="config" aria-labelledby="config-heading">
+    <div class="container">
+      <div class="config-copy">
+        <p class="eyebrow">// settings.json</p>
+        <h2 id="config-heading">It's a config file, not a wizard.</h2>
+        <p>Everything QuickDictate does is one readable JSON file. Point it at a provider, drop in a key, pick your hotkey behavior, done.</p>
+        <ul>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><b>Multiple keys per provider</b> round-robin automatically, with per-key health tracking and cooldown — a dead key mid-sentence rotates to the next without dropping your press.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><b>Keys are checked before you need them</b> — on startup the active provider's keys are probed in the background, so a dead or rate-limited one is flagged before your first word.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><b>Version-controllable</b> — back it up, diff it, template it across a fresh install in seconds.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="code-window">
+        <div class="code-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="code-filename">settings.json</span>
+          <button class="copy-btn" id="copyBtn" type="button" aria-label="Copy settings.json to clipboard">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" id="copyIcon"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.7"/></svg>
+            <span id="copyLabel">Copy</span>
+          </button>
+        </div>
+        <pre class="code-body"><code id="configCode">{<span class="tok-punc"></span>
+  <span class="tok-key">"stt_provider"</span><span class="tok-punc">:</span> <span class="tok-str provider">"deepgram"</span><span class="tok-punc">,</span>
+  <span class="tok-key">"deepgram_keys"</span><span class="tok-punc">:</span> [<span class="tok-str">"YOUR_DEEPGRAM_API_KEY"</span>]<span class="tok-punc">,</span>
+  <span class="tok-key">"language"</span><span class="tok-punc">:</span> <span class="tok-str">"en-US"</span><span class="tok-punc">,</span>
+  <span class="tok-key">"mode"</span><span class="tok-punc">:</span> <span class="tok-str">"toggle"</span><span class="tok-punc">,</span>
+  <span class="tok-key">"toggle_hotkey"</span><span class="tok-punc">:</span> <span class="tok-str">"f14"</span>
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ PROVIDERS ============ -->
+  <section class="section" id="providers" aria-labelledby="providers-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">// providers</p>
+        <h2 id="providers-heading">Six speech-to-text engines. Switch anytime.</h2>
+        <p>QuickDictate doesn't run its own model — it's a very good client for the one you already trust.</p>
+      </div>
+
+      <div class="provider-strip">
+        <div class="provider-chip"><span class="p-name">ElevenLabs</span><span class="p-tag">streaming</span></div>
+        <div class="provider-chip"><span class="p-name">Deepgram</span><span class="p-tag">streaming</span></div>
+        <div class="provider-chip"><span class="p-name">OpenAI</span><span class="p-tag">streaming</span></div>
+        <div class="provider-chip"><span class="p-name">AssemblyAI</span><span class="p-tag">streaming</span></div>
+        <div class="provider-chip"><span class="p-name">DashScope</span><span class="p-tag">streaming</span></div>
+        <div class="provider-chip"><span class="p-name">Google Cloud</span><span class="p-tag">batch</span></div>
+      </div>
+
+      <div class="provider-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <p><b>Add multiple keys per provider</b> and QuickDictate round-robins between them automatically, tracking each key's health and cooldown independently. If a key dies mid-sentence, the next request quietly rotates to a healthy one — your press never drops.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ SCREENSHOTS ============ -->
+  <section class="section" aria-labelledby="shots-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">// inside settings</p>
+        <h2 id="shots-heading">Every control is one click away.</h2>
+        <p>The tray icon opens a compact Settings window — provider picker, key manager, and the replacement table live here.</p>
+      </div>
+
+      <div class="shots">
+        <div class="shot-window">
+          <div class="shot-bar">
+            <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+            <span class="shot-title">Settings — Providers</span>
+          </div>
+          <div class="shot-body">
+            <img src="assets/settings.png" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="340" height="415">
+          </div>
+          <p class="shot-caption">Provider picker, API-key manager, hotkey and mode toggles — one screen.</p>
+        </div>
+
+        <div class="shot-window">
+          <div class="shot-bar">
+            <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+            <span class="shot-title">Settings — Replacements</span>
+          </div>
+          <div class="shot-body">
+            <img src="assets/text-replacements.png" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="340" height="415">
+          </div>
+          <p class="shot-caption">The replacement table — teach it your vocabulary once, it sticks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ PRIVACY / TRUST ============ -->
+  <section class="section" id="privacy" aria-labelledby="privacy-heading">
+    <div class="container">
+      <div class="trust">
+        <div class="trust-grid">
+          <div>
+            <p class="eyebrow">// privacy</p>
+            <h2 id="privacy-heading">No telemetry. Full stop.</h2>
+            <p class="lead">QuickDictate never phones home. The only thing that leaves your machine is your audio — and it only ever goes to the one provider you picked.</p>
+            <ul class="trust-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><b>No account, no server of ours</b><span class="d">There's nothing to sign up for and nothing of ours sitting between you and your provider.</span></div>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><b>Optional update check, once a day</b><span class="d">Verified by size and SHA-256 against GitHub releases. Nothing installs without your OK.</span></div>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><b>Free &amp; MIT-licensed</b><span class="d">Read every line, fork it, self-host your own build. Nothing is hidden behind the tray icon.</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="trust-diagram" role="img" aria-label="Diagram: your microphone connects only to your chosen speech-to-text provider; QuickDictate has no server in between and receives nothing">
+            <div class="flow-row">
+              <span class="flow-node you">your mic</span>
+              <span class="flow-arrow">──▶</span>
+              <span class="flow-node">quickdictate</span>
+              <span class="flow-arrow">──▶</span>
+              <span class="flow-node provider">your provider</span>
+            </div>
+            <div class="flow-x">✕ no lunarwerx server in this path</div>
+            <div class="flow-row">
+              <span class="flow-node">transcript</span>
+              <span class="flow-arrow">──▶</span>
+              <span class="flow-node you">focused window</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="cta-final container">
+    <p class="eyebrow" style="justify-content:center;">// ready when you are</p>
+    <h2>Your voice, your key, your text field.</h2>
+    <p>Free, open-source, Windows 10/11 x64. Currently in beta — issues and pull requests welcome.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Download for Windows
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/LunarWerxs/QuickDictate">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.15c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <a class="footer-logo" href="https://lunarwerx.com" aria-label="LunarWerx Studios">
+        <img src="assets/lw_logo_white.png" alt="LunarWerx Studios">
+      </a>
+      <ul class="footer-links">
+        <li><a href="https://github.com/LunarWerxs/QuickDictate"><img src="assets/github_mark.png" alt="">GitHub</a></li>
+        <li><a href="https://github.com/LunarWerxs/QuickDictate/releases/latest">Releases</a></li>
+        <li><a href="https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE">MIT License</a></li>
+        <li><a href="https://lunarwerx.com">lunarwerx.com</a></li>
+      </ul>
+    </div>
+    <p class="footer-meta">QuickDictate is free and open-source software. Not affiliated with any speech-to-text provider listed above.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('copyBtn');
+    var label = document.getElementById('copyLabel');
+    var code = document.getElementById('configCode');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var text = code.innerText;
+      function done(ok){
+        label.textContent = ok ? 'Copied' : 'Copy failed';
+        setTimeout(function(){ label.textContent = 'Copy'; }, 1800);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); });
+      } else {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          done(true);
+        } catch(e){ done(false); }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
