@@ -6,10 +6,19 @@
 <title>QuickDictate — Speech-to-text that lives in your tray</title>
 <meta name="description" content="QuickDictate is a Windows tray app for speech-to-text dictation. Hold or tap a hotkey, talk, and the transcript types into whatever window has focus. Bring your own STT API key — no subscription, no account, no server in between.">
 <link rel="icon" href="assets/icon-256.png" type="image/png">
-<meta property="og:title" content="QuickDictate — Press a key, talk, and your words land wherever your cursor is">
-<meta property="og:description" content="A Windows tray app for speech-to-text dictation. Bring your own API key (ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, Google). No subscription. No telemetry. Free & MIT-licensed.">
-<meta property="og:image" content="assets/icon-256.png">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="QuickDictate">
+<meta property="og:url" content="https://quickdictate.github.io/">
+<meta property="og:title" content="QuickDictate — press a key, talk, it types itself">
+<meta property="og:description" content="A Windows tray app for speech-to-text. Bring your own API key — no subscription, no telemetry. Free & MIT-licensed.">
+<meta property="og:image" content="https://quickdictate.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="QuickDictate — speech-to-text that lives in your Windows tray">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QuickDictate — press a key, talk, it types itself">
+<meta name="twitter:description" content="A Windows tray app for speech-to-text. Bring your own API key — no subscription, no telemetry. Free & MIT-licensed.">
+<meta name="twitter:image" content="https://quickdictate.github.io/assets/og-image.png">
 <style>
 
   /* ---------- Reset & base ---------- */
@@ -615,7 +624,7 @@
       <div>
         <p class="eyebrow">quickdictate · beta · windows 10/11 x64</p>
         <h1 id="hero-heading">Press a key, talk, and your words land <span class="accent">wherever your cursor already is.</span></h1>
-        <p class="hero-sub">QuickDictate sits quietly in your Windows tray. Hold or tap a global hotkey, speak, and the transcript types itself into whatever window has focus — editor, chat box, email, terminal, any text field.</p>
+        <p class="hero-sub">Hold or tap a hotkey, speak, and your words land in whatever window has focus.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -659,46 +668,46 @@
       <div class="section-head">
         <p class="eyebrow">// features</p>
         <h2 id="features-heading">Built like a tool, not a product funnel.</h2>
-        <p>No accounts to create, no usage to meter. Just the parts a dictation tool actually needs.</p>
+        <p>No accounts, no metering — just what a dictation tool needs.</p>
       </div>
 
       <div class="feature-grid">
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-3 0h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
           <h3>Bring your own key</h3>
-          <p>Your STT provider key, your account, your usage. QuickDictate never bills you a cent — you already pay the provider directly, at their rate.</p>
+          <p>Your provider key, your account, your bill. QuickDictate never charges a cent.</p>
         </div>
         <div class="card blue">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
           <h3>Types into any window</h3>
-          <p>Editor, chat box, email, terminal, browser field — QuickDictate uses OS-level clipboard and keystroke APIs to land text wherever focus already is.</p>
+          <p>Editor, chat, terminal, browser field — text lands wherever focus is.</p>
         </div>
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
           <h3>Streams as you speak</h3>
-          <p>With streaming-capable providers, words paste live while you're still talking — no waiting for a final blob of text after the fact.</p>
+          <p>Streaming providers paste words live as you talk — no waiting for a final blob.</p>
         </div>
 
         <div class="card blue wide">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 20V10m0 0 5 5m-5-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 4h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <h3>Hold or toggle — your call</h3>
-          <p>Hold a key while you talk, or tap once to start and once to stop. Both hotkeys are fully rebindable in Settings; defaults are <kbd>F13</kbd> for hold and <kbd>F14</kbd> for toggle, chosen to stay clear of the keys you already use.</p>
+          <p>Hold to talk, or tap to start and stop. Both rebind in Settings; the <kbd>F13</kbd>/<kbd>F14</kbd> defaults avoid keys you already use.</p>
         </div>
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 12l4-4M5 12l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>"Scratch that"</h3>
-          <p>Say it out loud and the last pasted chunk quietly un-types itself. No reaching for the mouse mid-sentence.</p>
+          <p>Say it, and your last pasted chunk un-types itself. No reaching for the mouse.</p>
         </div>
 
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 6l2 13h12l2-13M9 10v6m6-6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Fixes what it mishears</h3>
-          <p>A replacement table turns "chat gpt" into "ChatGPT", "github" into "GitHub" — whatever your vocabulary needs, corrected automatically on the way out.</p>
+          <p>A replacement table fixes "chat gpt" → "ChatGPT", "github" → "GitHub", and the rest.</p>
         </div>
         <div class="card blue wide">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="7" height="16" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="4" width="7" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></div>
           <h3>Per-app profiles</h3>
-          <p>Different punctuation, spacing, and replacement rules depending on which app has focus — terse and code-safe in your editor, natural prose in chat, no manual switching required.</p>
+          <p>Punctuation, spacing, and replacements per app — code-safe in your editor, prose in chat, switched automatically.</p>
         </div>
       </div>
     </div>
@@ -712,19 +721,19 @@
       <div class="config-copy">
         <p class="eyebrow">// settings.json</p>
         <h2 id="config-heading">It's a config file, not a wizard.</h2>
-        <p>Everything QuickDictate does is one readable JSON file. Point it at a provider, drop in a key, pick your hotkey behavior, done.</p>
+        <p>One readable JSON file. Point it at a provider, drop in a key, done.</p>
         <ul>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>Multiple keys per provider</b> round-robin automatically, with per-key health tracking and cooldown — a dead key mid-sentence rotates to the next without dropping your press.</span>
+            <span><b>Multiple keys per provider</b> round-robin automatically, with per-key health tracking — a dead key rotates to the next without dropping your press.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>Keys are checked before you need them</b> — on startup the active provider's keys are probed in the background, so a dead or rate-limited one is flagged before your first word.</span>
+            <span><b>Keys are checked before you need them</b> — probed at startup, so a dead or rate-limited key is caught before your first word.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>Version-controllable</b> — back it up, diff it, template it across a fresh install in seconds.</span>
+            <span><b>Version-controllable</b> — back it up, diff it, template a fresh install in seconds.</span>
           </li>
         </ul>
       </div>
@@ -757,7 +766,7 @@
       <div class="section-head">
         <p class="eyebrow">// providers</p>
         <h2 id="providers-heading">Six speech-to-text engines. Switch anytime.</h2>
-        <p>QuickDictate doesn't run its own model — it's a very good client for the one you already trust.</p>
+        <p>No model of ours — just a great client for the one you already trust.</p>
       </div>
 
       <div class="provider-strip">
@@ -771,7 +780,7 @@
 
       <div class="provider-note">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
-        <p><b>Add multiple keys per provider</b> and QuickDictate round-robins between them automatically, tracking each key's health and cooldown independently. If a key dies mid-sentence, the next request quietly rotates to a healthy one — your press never drops.</p>
+        <p><b>Add multiple keys per provider</b> and QuickDictate round-robins them with health tracking — a dead key never drops your press.</p>
       </div>
     </div>
   </section>
@@ -784,7 +793,7 @@
       <div class="section-head">
         <p class="eyebrow">// inside settings</p>
         <h2 id="shots-heading">Every control is one click away.</h2>
-        <p>The tray icon opens a compact Settings window — provider picker, key manager, and the replacement table live here.</p>
+        <p>One compact Settings window — provider picker, key manager, replacement table.</p>
       </div>
 
       <div class="shots">
@@ -796,7 +805,7 @@
           <div class="shot-body">
             <img src="assets/settings.png" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="340" height="415">
           </div>
-          <p class="shot-caption">Provider picker, API-key manager, hotkey and mode toggles — one screen.</p>
+          <p class="shot-caption">Provider picker, key manager, and toggles — one screen.</p>
         </div>
 
         <div class="shot-window">
@@ -807,7 +816,7 @@
           <div class="shot-body">
             <img src="assets/text-replacements.png" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="340" height="415">
           </div>
-          <p class="shot-caption">The replacement table — teach it your vocabulary once, it sticks.</p>
+          <p class="shot-caption">The replacement table — teach it your vocabulary once.</p>
         </div>
       </div>
     </div>
@@ -823,19 +832,19 @@
           <div>
             <p class="eyebrow">// privacy</p>
             <h2 id="privacy-heading">No telemetry. Full stop.</h2>
-            <p class="lead">QuickDictate never phones home. The only thing that leaves your machine is your audio — and it only ever goes to the one provider you picked.</p>
+            <p class="lead">Never phones home. Your audio leaves your machine only to the provider you picked.</p>
             <ul class="trust-list">
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>No account, no server of ours</b><span class="d">There's nothing to sign up for and nothing of ours sitting between you and your provider.</span></div>
+                <div><b>No account, no server of ours</b><span class="d">Nothing to sign up for, and nothing of ours between you and your provider.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Optional update check, once a day</b><span class="d">Verified by size and SHA-256 against GitHub releases. Nothing installs without your OK.</span></div>
+                <div><b>Optional update check, once a day</b><span class="d">Size + SHA-256 verified against GitHub releases. Nothing installs without your OK.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Free &amp; MIT-licensed</b><span class="d">Read every line, fork it, self-host your own build. Nothing is hidden behind the tray icon.</span></div>
+                <div><b>Free &amp; MIT-licensed</b><span class="d">Read every line, fork it, build your own. Nothing hidden behind the tray icon.</span></div>
               </li>
             </ul>
           </div>
@@ -864,7 +873,7 @@
   <section class="cta-final container">
     <p class="eyebrow" style="justify-content:center;">// ready when you are</p>
     <h2>Your voice, your key, your text field.</h2>
-    <p>Free, open-source, Windows 10/11 x64. Currently in beta — issues and pull requests welcome.</p>
+    <p>Free, open-source, Windows 10/11. In beta — issues and PRs welcome.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -892,7 +901,7 @@
         <li><a href="https://lunarwerx.com">lunarwerx.com</a></li>
       </ul>
     </div>
-    <p class="footer-meta">QuickDictate is free and open-source software. Not affiliated with any speech-to-text provider listed above.</p>
+    <p class="footer-meta">Free, open-source software. Not affiliated with any provider listed above.</p>
   </div>
 </footer>
 
