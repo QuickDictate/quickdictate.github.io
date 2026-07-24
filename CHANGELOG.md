@@ -4,6 +4,21 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-07-24
+
+### Changed
+
+- Refreshed the landing page for QuickDictate v0.5.0 and its fully offline Local
+  provider.
+- Added the Cohere Transcribe and Whisper Large v3 Turbo model choices, their
+  download sizes and tradeoffs, and one-click install/select/cancel/delete details.
+- Documented parallel verified model downloads, background prewarming, final-result
+  feedback, queued local dictation, and the long-session memory/IO improvements.
+- Updated setup, provider, privacy, and data-flow copy for the choice between six
+  cloud providers and on-device transcription.
+- Updated page metadata and the social share card so link previews mention cloud
+  and offline speech recognition.
+
 ## 2026-07-06
 
 First public version of the site, live at <https://quickdictate.github.io/>.

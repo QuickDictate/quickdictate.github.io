@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QuickDictate — Speech-to-text that lives in your tray</title>
-<meta name="description" content="A little Windows app that turns your voice into text anywhere you can type. Hold a hotkey, talk, and it types for you. Bring your own speech-to-text key. No subscription, no account.">
+<title>QuickDictate — Cloud or offline speech-to-text for Windows</title>
+<meta name="description" content="A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key cloud providers or optional fully offline Cohere and Whisper models. No subscription or account.">
 <link rel="icon" href="assets/icon-256.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="QuickDictate">
 <meta property="og:url" content="https://quickdictate.github.io/">
 <meta property="og:title" content="QuickDictate — talk instead of type, in any app">
-<meta property="og:description" content="A Windows tray app for speech-to-text. Bring your own API key — no subscription, no telemetry. Free & MIT-licensed.">
+<meta property="og:description" content="Speech-to-text for any Windows app. Choose six cloud services or fully offline local models — no subscription, no telemetry. Free & MIT-licensed.">
 <meta property="og:image" content="https://quickdictate.github.io/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="QuickDictate — speech-to-text that lives in your Windows tray">
+<meta property="og:image:alt" content="QuickDictate — cloud or fully offline speech-to-text for any Windows app">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="QuickDictate — talk instead of type, in any app">
-<meta name="twitter:description" content="A Windows tray app for speech-to-text. Bring your own API key — no subscription, no telemetry. Free & MIT-licensed.">
+<meta name="twitter:description" content="Speech-to-text for any Windows app. Choose six cloud services or fully offline local models — no subscription, no telemetry. Free & MIT-licensed.">
 <meta name="twitter:image" content="https://quickdictate.github.io/assets/og-image.png">
 <style>
 
@@ -436,7 +436,7 @@
   /* ---------- Providers ---------- */
   .provider-strip {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
     gap: 14px;
   }
   .provider-chip {
@@ -448,6 +448,11 @@
   }
   .provider-chip .p-name { font-weight: 700; font-size: 0.94rem; }
   .provider-chip .p-tag { display:block; margin-top: 6px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); }
+  .provider-chip.local {
+    border-color: rgba(46,125,246,0.55);
+    background: rgba(46,125,246,0.09);
+  }
+  .provider-chip.local .p-name { color: var(--azure); }
   .provider-note {
     margin-top: 26px;
     display: flex;
@@ -539,8 +544,17 @@
   }
   .flow-node.you { border-color: var(--azure); color: var(--azure); }
   .flow-node.provider { border-color: var(--coral-dim); color: var(--coral); }
+  .flow-node.local { border-color: #4CB874; color: #69CF91; }
   .flow-arrow { color: var(--faint); }
   .flow-x { color: var(--faint); text-align: center; padding: 6px 0 10px 42px; font-size: 0.78rem; }
+  .flow-label {
+    color: var(--faint);
+    font-size: 0.72rem;
+    letter-spacing: .12em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+  }
+  .flow-label.cloud { margin-top: 22px; }
 
   /* ---------- Final CTA ---------- */
   .cta-final {
@@ -607,6 +621,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#offline">Local models</a></li>
       <li><a href="#providers">Providers</a></li>
       <li><a href="#config">Config</a></li>
       <li><a href="#privacy">Privacy</a></li>
@@ -622,9 +637,9 @@
   <section class="hero container" aria-labelledby="hero-heading">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">quickdictate · beta · windows 10/11 x64</p>
+        <p class="eyebrow">quickdictate · v0.5.0 · windows 10/11 x64</p>
         <h1 id="hero-heading">Press a key, talk, and your words land <span class="accent">wherever your cursor already is.</span></h1>
-        <p class="hero-sub">Hold a hotkey, talk, and the words show up right where you're already typing.</p>
+        <p class="hero-sub">Hold a hotkey and dictate into any app. Use six cloud providers, or install Cohere or Whisper for fully offline speech recognition.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -639,6 +654,7 @@
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C1 8.5 2.5 5 6 5c2 0 3.5 1.2 4 2 .5-.8 2-2 4-2 3.5 0 5 3.5 3.5 7-2.5 4.4-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.6"/></svg> Free &amp; MIT-licensed</span>
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M8 3v3M16 3v3" stroke="currentColor" stroke-width="1.6"/></svg> No subscription, ever</span>
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.6"/></svg> Zero telemetry</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.6"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Local mode stays offline</span>
         </div>
       </div>
 
@@ -662,6 +678,42 @@
 
   <hr class="divider">
 
+  <!-- ============ V0.5 / OFFLINE ============ -->
+  <section class="section" id="offline" aria-labelledby="offline-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">// new in v0.5.0</p>
+        <h2 id="offline-heading">Go fully offline, without turning setup into a project.</h2>
+        <p>Pick Local in Settings, install one model, and keep every recording on your PC. No key and no QuickDictate account required.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="card blue">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 16.5v-9Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>Two local models</h3>
+          <p><strong>Cohere Transcribe Q5</strong> is the 1.65 GiB accuracy-first default. <strong>Whisper Large v3 Turbo Q5</strong> is a smaller 591 MiB option with broader language coverage.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>One-click model management</h3>
+          <p>Install, select, cancel a download, or delete either model in Settings. Downloads run in parallel when supported and are verified before QuickDictate uses them.</p>
+        </div>
+        <div class="card blue">
+          <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 3h4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Warm, visible, and ready</h3>
+          <p>The selected model prewarms in the background and stays ready. A spinner shows final processing, an early next hotkey is queued, and switching back to cloud releases the model's RAM and VRAM.</p>
+        </div>
+      </div>
+
+      <div class="provider-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <p><b>v0.5 also stays lighter over long sessions:</b> bounded audio, log, clipboard, update, and network buffers; chunked long Google recordings; less idle polling; and fixes for duplicate audio, emoji pasting, cold local results, and Save &amp; Restart returning to Settings.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
   <!-- ============ FEATURES ============ -->
   <section class="section" id="features" aria-labelledby="features-heading">
     <div class="container">
@@ -674,8 +726,8 @@
       <div class="feature-grid">
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-3 0h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-          <h3>Bring your own key</h3>
-          <p>You bring a key from a provider you already pay. We don't add a cent on top.</p>
+          <h3>Cloud or fully local</h3>
+          <p>Bring a key to one of six cloud services, or install an optional local model and keep your audio on the PC.</p>
         </div>
         <div class="card blue">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
@@ -684,8 +736,8 @@
         </div>
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
-          <h3>Streams as you speak</h3>
-          <p>The words show up as you talk, so you're not stuck waiting for it to catch up.</p>
+          <h3>Feedback that matches the engine</h3>
+          <p>Five cloud engines stream words live. Google and Local finish after release, with clear processing feedback while they work.</p>
         </div>
 
         <div class="card blue wide">
@@ -719,17 +771,17 @@
   <section class="section config-section" id="config" aria-labelledby="config-heading">
     <div class="container">
       <div class="config-copy">
-        <p class="eyebrow">// settings.json</p>
-        <h2 id="config-heading">It's a config file, not a wizard.</h2>
-        <p>It's one readable JSON file. Point it at a provider, paste in a key, and you're done.</p>
+        <p class="eyebrow">// simple settings</p>
+        <h2 id="config-heading">One small Settings window. Plain JSON underneath.</h2>
+        <p>Choose a cloud service and paste a key, or choose Local and install a model with no key at all. Advanced users can still edit one readable file.</p>
         <ul>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>Got more than one key?</b> It rotates through them and skips any that are dead or throttled, so a bad key never cuts you off mid-sentence.</span>
+            <span><b>Local is managed in the app.</b> Pick Cohere or Whisper, then install, cancel, switch, or delete it from the same screen.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>It tests your keys on startup</b>, so you find out a key's dead before you start talking, not halfway through.</span>
+            <span><b>Got more than one cloud key?</b> It rotates through them and routes around keys that are dead or throttled.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -748,8 +800,8 @@
           </button>
         </div>
         <pre class="code-body"><code id="configCode">{<span class="tok-punc"></span>
-  <span class="tok-key">"stt_provider"</span><span class="tok-punc">:</span> <span class="tok-str provider">"deepgram"</span><span class="tok-punc">,</span>
-  <span class="tok-key">"deepgram_keys"</span><span class="tok-punc">:</span> [<span class="tok-str">"YOUR_DEEPGRAM_API_KEY"</span>]<span class="tok-punc">,</span>
+  <span class="tok-key">"stt_provider"</span><span class="tok-punc">:</span> <span class="tok-str provider">"local"</span><span class="tok-punc">,</span>
+  <span class="tok-key">"local_model"</span><span class="tok-punc">:</span> <span class="tok-str">"cohere-q5"</span><span class="tok-punc">,</span>
   <span class="tok-key">"language"</span><span class="tok-punc">:</span> <span class="tok-str">"en-US"</span><span class="tok-punc">,</span>
   <span class="tok-key">"mode"</span><span class="tok-punc">:</span> <span class="tok-str">"toggle"</span><span class="tok-punc">,</span>
   <span class="tok-key">"toggle_hotkey"</span><span class="tok-punc">:</span> <span class="tok-str">"f14"</span>
@@ -765,8 +817,8 @@
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">// providers</p>
-        <h2 id="providers-heading">Six engines to pick from. Switch whenever you feel like it.</h2>
-        <p>QuickDictate doesn't do the transcribing itself. It hands your audio to whichever service you trust and stays out of the way.</p>
+        <h2 id="providers-heading">Seven engines. Cloud when you want it, local when you don't.</h2>
+        <p>Use six bring-your-own-key services, or process audio on your PC with an optional Cohere or Whisper model. Switch whenever you like.</p>
       </div>
 
       <div class="provider-strip">
@@ -776,11 +828,16 @@
         <div class="provider-chip"><span class="p-name">AssemblyAI</span><span class="p-tag">streaming</span></div>
         <div class="provider-chip"><span class="p-name">DashScope</span><span class="p-tag">streaming</span></div>
         <div class="provider-chip"><span class="p-name">Google Cloud</span><span class="p-tag">batch</span></div>
+        <div class="provider-chip local"><span class="p-name">Local</span><span class="p-tag">offline · no key</span></div>
       </div>
 
       <div class="provider-note">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
-        <p><b>Stack a few keys for one provider</b> and it spreads requests across them, routing around any that go down.</p>
+        <p><b>The app stays small until you choose Local.</b> Model weights download on demand to Local AppData instead of living in the executable or source repository, and you can delete either model from Settings at any time.</p>
+      </div>
+      <div class="provider-note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <p><b>Stack a few keys for one cloud provider</b> and QuickDictate spreads requests across them, routing around any that go down.</p>
       </div>
     </div>
   </section>
@@ -793,7 +850,7 @@
       <div class="section-head">
         <p class="eyebrow">// inside settings</p>
         <h2 id="shots-heading">Everything's in one window.</h2>
-        <p>The whole app is one Settings window. Pick a provider, manage your keys, edit your replacements.</p>
+        <p>Pick cloud or Local, manage keys and models, tune your hotkeys, and edit text replacements without leaving one window.</p>
       </div>
 
       <div class="shots">
@@ -805,7 +862,7 @@
           <div class="shot-body">
             <img src="assets/settings.png" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="340" height="415">
           </div>
-          <p class="shot-caption">Providers, keys, and all the toggles on one screen.</p>
+          <p class="shot-caption">Providers, keys, hotkeys, and the everyday toggles on one screen.</p>
         </div>
 
         <div class="shot-window">
@@ -831,16 +888,20 @@
         <div class="trust-grid">
           <div>
             <p class="eyebrow">// privacy</p>
-            <h2 id="privacy-heading">Your audio goes straight to your provider.</h2>
-            <p class="lead">You pick the service, you bring the key. QuickDictate sends your mic to it and types back whatever comes out. It's the same request you'd make yourself, just on a hotkey.</p>
+            <h2 id="privacy-heading">Choose cloud, or keep every word local.</h2>
+            <p class="lead">With Local selected, audio is processed entirely on your PC. With a cloud provider, it goes directly to only the service you chose using your key — there is no QuickDictate transcription server in the middle.</p>
             <ul class="trust-list">
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Bring your own provider</b><span class="d">You plug in a key from a service you already use. There's no QuickDictate account to make.</span></div>
+                <div><b>Fully offline when you want it</b><span class="d">Microphone audio is processed on this PC. No API key or internet connection is needed after installation.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Updates on your terms</b><span class="d">Once a day it can peek at GitHub for a new version, if you leave that on. It checks the download and only installs when you say yes.</span></div>
+                <div><b>Bring your own cloud provider</b><span class="d">Use a key from a service you trust. QuickDictate adds no account, proxy, or subscription.</span></div>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><b>Verified updates, if enabled</b><span class="d">The optional daily GitHub check can install a new version automatically only after its download is verified.</span></div>
               </li>
               <li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -849,20 +910,25 @@
             </ul>
           </div>
 
-          <div class="trust-diagram" role="img" aria-label="Diagram: your microphone streams to the speech-to-text provider you chose, and the transcript is typed into your focused window.">
+          <div class="trust-diagram" role="img" aria-label="Two privacy paths: Local processes microphone audio on this PC, while cloud mode sends it directly to only the selected provider. Both type the transcript into the focused window.">
+            <div class="flow-label">Local</div>
             <div class="flow-row">
               <span class="flow-node you">your mic</span>
               <span class="flow-arrow">──▶</span>
-              <span class="flow-node">quickdictate</span>
-              <span class="flow-arrow">──▶</span>
-              <span class="flow-node provider">your provider</span>
-            </div>
-            <div class="flow-x">your audio out · your text back</div>
-            <div class="flow-row">
-              <span class="flow-node">transcript</span>
+              <span class="flow-node local">quickdictate + model</span>
               <span class="flow-arrow">──▶</span>
               <span class="flow-node you">focused window</span>
             </div>
+            <div class="flow-x">audio stays on this PC</div>
+            <div class="flow-label cloud">Cloud</div>
+            <div class="flow-row">
+              <span class="flow-node you">your mic</span>
+              <span class="flow-arrow">──▶</span>
+              <span class="flow-node provider">chosen provider</span>
+              <span class="flow-arrow">──▶</span>
+              <span class="flow-node you">focused window</span>
+            </div>
+            <div class="flow-x">direct request · no QuickDictate server</div>
           </div>
         </div>
       </div>
@@ -873,7 +939,7 @@
   <section class="cta-final container">
     <p class="eyebrow" style="justify-content:center;">// ready when you are</p>
     <h2>Ready to stop typing so much?</h2>
-    <p>Free, open source, runs on Windows 10 and 11. It's still a beta, so bug reports and PRs are genuinely welcome.</p>
+    <p>v0.5.0 is free, open source, and runs on Windows 10 and 11. Start with cloud, go fully local, and switch whenever you like.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://github.com/LunarWerxs/QuickDictate/releases/latest">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v13m0 0-4.5-4.5M12 16l4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19.5h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
