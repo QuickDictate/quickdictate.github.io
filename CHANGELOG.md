@@ -21,7 +21,7 @@ the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/Lu
 
 ## 2026-07-06
 
-First public version of the site, live at <https://quickdictate.github.io/>.
+First public version of the site, live at <https://quickdictate.lunarwerx.com/>.
 
 ### Added
 - Single-page landing site (`index.html`) with a dark, developer-flavored design:

@@ -4,7 +4,7 @@ The website for **QuickDictate**, a tiny Windows tray app that turns your voice 
 anywhere you can type using your choice of cloud or fully offline speech recognition.
 This repo is just the site; the app lives in its own repo.
 
-- **Live:** https://quickdictate.github.io/
+- **Live:** https://quickdictate.lunarwerx.com/
 - **The app:** https://github.com/LunarWerxs/QuickDictate
 - **By:** [LunarWerx Studios](https://lunarwerx.com)
 
