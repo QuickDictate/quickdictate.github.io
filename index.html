@@ -685,6 +685,112 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         })(window, document, 'ak_a94f06045f1b8af71bbea143a44f9af5087e');
     </script>
     <!-- End ARGUS Analytics Pixel -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://quickdictate.lunarwerx.com/#app",
+      "name": "QuickDictate",
+      "description": "A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key cloud providers or optional fully offline Cohere and Whisper models. No subscription or account.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Windows 10/11 x64",
+      "url": "https://quickdictate.lunarwerx.com/",
+      "downloadUrl": "https://github.com/LunarWerxs/QuickDictate/releases/latest",
+      "image": "https://quickdictate.lunarwerx.com/assets/og-image.png",
+      "featureList": [
+        "Cloud or fully local",
+        "Types into any window",
+        "Feedback that matches the engine",
+        "Hold it or tap it",
+        "Scratch that",
+        "Fixes what it mishears",
+        "Per-app profiles",
+        "Two local models",
+        "One-click model management",
+        "Warm, visible, and ready"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": { "@id": "https://lunarwerx.com/#org" },
+      "publisher": { "@id": "https://lunarwerx.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://lunarwerx.com/#org",
+      "name": "LunarWerx Studios",
+      "url": "https://lunarwerx.com/",
+      "logo": "https://lunarwerx.com/logowhite.webp",
+      "sameAs": ["https://github.com/LunarWerxs"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://quickdictate.lunarwerx.com/#site",
+      "name": "QuickDictate",
+      "url": "https://quickdictate.lunarwerx.com/",
+      "publisher": { "@id": "https://lunarwerx.com/#org" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://quickdictate.lunarwerx.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is QuickDictate free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, QuickDictate is free and open source under the MIT license, with no subscription, no QuickDictate account, and no monthly bill. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC — there is no QuickDictate transcription server in the middle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does QuickDictate work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Choose Local in Settings, install one model, and keep every recording on your PC — no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which speech-to-text providers can I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QuickDictate supports six bring-your-own-key cloud services — ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud — plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What operating systems does QuickDictate support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus — an editor, a chat box, a terminal, or a web form."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does QuickDictate require an account or collect my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. QuickDictate has zero telemetry and needs no sign-up, dashboard, or QuickDictate account. With Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key — there is no QuickDictate transcription server in the middle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use multiple API keys with one provider?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If you stack a few keys for one cloud provider, QuickDictate spreads requests across them and automatically routes around any key that is dead or throttled. Settings also let you install, select, cancel a download for, or delete either local model at any time."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="lw-parent" href="https://lunarwerx.com/" aria-label="Back to LunarWerx Studios, the parent studio"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span class="lw-tip" aria-hidden="true"><span>LunarWerx Studios</span><span>Every app we build, in one place</span></span></a>
@@ -1006,6 +1112,46 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             </div>
             <div class="flow-x">direct request · no QuickDictate server</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">// faq</p>
+        <h2 id="faq-heading">Questions people ask</h2>
+        <p>Straight answers, pulled from the same details already on this page.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="card">
+          <h3>Is QuickDictate free?</h3>
+          <p>Yes, QuickDictate is free and open source under the MIT license, with no subscription, no QuickDictate account, and no monthly bill. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC — there is no QuickDictate transcription server in the middle.</p>
+        </div>
+        <div class="card">
+          <h3>Does QuickDictate work offline?</h3>
+          <p>Yes. Choose Local in Settings, install one model, and keep every recording on your PC — no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage.</p>
+        </div>
+        <div class="card">
+          <h3>Which speech-to-text providers can I use?</h3>
+          <p>QuickDictate supports six bring-your-own-key cloud services — ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud — plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work.</p>
+        </div>
+        <div class="card">
+          <h3>What operating systems does QuickDictate support?</h3>
+          <p>QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus — an editor, a chat box, a terminal, or a web form.</p>
+        </div>
+        <div class="card">
+          <h3>Does QuickDictate require an account or collect my data?</h3>
+          <p>No. QuickDictate has zero telemetry and needs no sign-up, dashboard, or QuickDictate account. With Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key — there is no QuickDictate transcription server in the middle.</p>
+        </div>
+        <div class="card">
+          <h3>Can I use multiple API keys with one provider?</h3>
+          <p>Yes. If you stack a few keys for one cloud provider, QuickDictate spreads requests across them and automatically routes around any key that is dead or throttled. Settings also let you install, select, cancel a download for, or delete either local model at any time.</p>
         </div>
       </div>
     </div>

@@ -1,0 +1,21 @@
+# QuickDictate
+
+> A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key cloud providers or optional fully offline Cohere and Whisper models. No subscription or account.
+
+QuickDictate is a Windows 10/11 x64 tray app for voice dictation: hold or tap a global hotkey, speak, and the transcript types straight into whatever window has focus, an editor, a chat box, a terminal, or any web form. Choose one of six bring-your-own-key cloud speech-to-text services, or install an optional local model (Cohere or Whisper) and keep every recording on the PC with no key and no internet connection after install. There is no QuickDictate transcription server in the middle: cloud audio goes directly to the provider you picked using your own key, and Local audio never leaves the PC.
+
+## Key facts
+- Free and open source, MIT-licensed, made by LunarWerx Studios.
+- No subscription, no QuickDictate account, and zero telemetry.
+- Six cloud providers: ElevenLabs, Deepgram, OpenAI, AssemblyAI, and DashScope stream words live; Google Cloud transcribes in batch. All are bring-your-own-key.
+- Local (offline) mode needs no key: choose Cohere Transcribe Q5 (1.65 GiB, accuracy-first default) or Whisper Large v3 Turbo Q5 (591 MiB, smaller with broader language coverage), managed entirely from Settings (install, select, cancel, delete).
+- Default hotkeys are F13 to hold and F14 to toggle, both changeable; supports "scratch that" voice correction, a custom fix-list for mishears, and per-app profiles.
+- Stack multiple API keys for one provider and QuickDictate rotates through them, routing around any that are dead or throttled.
+- Settings are a single readable settings.json file underneath the UI.
+- Runs on Windows 10 and Windows 11, 64-bit.
+
+## Links
+- Home: https://quickdictate.lunarwerx.com/
+- Source code: https://github.com/LunarWerxs/QuickDictate
+- Download: https://github.com/LunarWerxs/QuickDictate/releases/latest
+- License: https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
