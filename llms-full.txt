@@ -1,0 +1,137 @@
+# QuickDictate - full brief
+
+> A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key
+> cloud providers or optional fully offline Cohere and Whisper models. No subscription,
+> no QuickDictate account, zero telemetry.
+
+Home: https://quickdictate.lunarwerx.com/
+Source: https://github.com/LunarWerxs/QuickDictate
+Download: https://github.com/LunarWerxs/QuickDictate/releases/latest
+License: MIT, https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
+Pricing: https://quickdictate.lunarwerx.com/pricing.md
+Maker: LunarWerx Studios, https://lunarwerx.com/
+Last updated: 2026-08-23
+
+## What it is
+
+QuickDictate is a Windows 10/11 (64-bit) tray app for voice dictation. Hold or tap a
+global hotkey, speak, and the transcript types straight into whatever window has focus:
+an editor, a chat box, a terminal, or any web form. There is no QuickDictate transcription
+server in the middle: cloud audio goes directly to the provider you picked using your own
+API key, and Local audio never leaves the PC.
+
+## Who it's for
+
+Anyone who wants to talk instead of type on Windows: writers, developers, and anyone doing
+repetitive typing, plus anyone who wants speech recognition that never touches a
+QuickDictate-run server, either because they'd rather pick their own cloud provider or
+because they want the option to run fully offline.
+
+## Providers (7 engines total)
+
+- ElevenLabs: cloud, streaming, bring your own key
+- Deepgram: cloud, streaming, bring your own key
+- OpenAI: cloud, streaming, bring your own key
+- AssemblyAI: cloud, streaming, bring your own key
+- DashScope: cloud, streaming, bring your own key
+- Google Cloud: cloud, batch (finishes after you release the hotkey), bring your own key
+- Local: fully offline, no key, no account, no internet connection needed after install
+
+Stack multiple API keys for one cloud provider and QuickDictate rotates through them,
+routing around any key that is dead or throttled.
+
+## Local (offline) models
+
+Two options, managed entirely from Settings (install, select, cancel a download, delete):
+
+- Cohere Transcribe Q5: 1.65 GiB, the accuracy-first default
+- Whisper Large v3 Turbo Q5: 591 MiB, smaller, with broader language coverage
+
+Model weights download on demand into Local AppData rather than shipping inside the
+installer. Downloads run in parallel where supported and are verified before use. The
+selected model prewarms in the background and stays ready; switching back to a cloud
+provider releases its RAM and VRAM.
+
+## Every feature
+
+- Cloud or fully local speech-to-text, switchable at any time
+- Types directly into whichever app currently has focus
+- Hold-to-talk or tap-to-toggle hotkeys, default F13 (hold) and F14 (toggle), both
+  user-changeable to any key
+- "Scratch that" voice correction: say it and the last bit of dictated text deletes itself
+- A custom fix-list / text-replacement table for words it commonly mishears
+- Per-app dictation profiles that switch automatically based on which app is focused
+- Multiple API keys per provider, load-balanced with automatic failover
+- Settings stored in one plain, human-readable settings.json file: back it up, put it in
+  git, or copy it to a new machine
+- Streaming feedback from five cloud engines; clear "processing" feedback from Google Cloud
+  and Local, which finish after the hotkey is released
+- v0.5.0 reliability work: bounded buffers, chunked long Google Cloud recordings, less idle
+  polling, and fixes for duplicate audio, emoji pasting, cold local results, and a
+  Save & Restart bug
+
+## Install
+
+1. Download the latest installer from
+   https://github.com/LunarWerxs/QuickDictate/releases/latest
+2. Run it on Windows 10 or 11 (64-bit)
+3. In Settings, either paste an API key for one of the six cloud providers, or switch to
+   Local and install Cohere Transcribe Q5 or Whisper Large v3 Turbo Q5, no key needed
+4. Hold F13 (or tap F14) and start dictating into any window
+
+## Pricing
+
+QuickDictate is free and open source under the MIT license. No subscription, no
+QuickDictate account, no paid tier. Local mode costs nothing beyond the one-time model
+download. Cloud providers are bring-your-own-key: whatever ElevenLabs, Deepgram, OpenAI,
+AssemblyAI, DashScope, or Google Cloud charge for their own API is billed to you directly
+by that provider, not by QuickDictate. Full machine-readable breakdown:
+https://quickdictate.lunarwerx.com/pricing.md
+
+## Privacy
+
+Zero telemetry. No sign-up, no dashboard, no QuickDictate account. With Local selected,
+audio is processed entirely on the PC. With a cloud provider, audio goes directly to only
+the service you chose, using your own key, and QuickDictate never sees or relays it. An
+optional daily GitHub check can install updates automatically, only after the download is
+verified.
+
+## How it compares
+
+- Windows Voice Access / Voice Typing: built into Windows 11, free, and Voice Access
+  dictates fully offline, but neither lets you choose a cloud engine, stack API keys, or
+  set per-app profiles the way QuickDictate does.
+- Talon Voice: free, donation-supported, cross-platform (Windows/macOS/Linux) voice
+  control and coding tool; focused on hands-free system control rather than a choice of
+  cloud speech-to-text engines.
+- Dragon Professional (Nuance): paid, licensed, Windows-only software with pricing
+  available on request rather than published; QuickDictate is free and provider-agnostic.
+- Wispr Flow: cross-platform (Mac/Windows/iOS/Android) freemium AI dictation app,
+  2,000 free words/week on desktop (1,000 on iPhone, unlimited on Android) then a paid subscription; QuickDictate has no word cap and no
+  subscription of its own.
+
+## FAQ
+
+Is QuickDictate free? Yes, free and open source (MIT), no subscription, no account.
+
+Does QuickDictate work offline? Yes, via Local mode with the Cohere or Whisper model.
+
+Which providers can I use? ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, Google
+Cloud, or Local.
+
+What OS does it support? Windows 10 and Windows 11, 64-bit only.
+
+Does it collect data or require an account? No, zero telemetry, no QuickDictate account.
+
+Can I use multiple keys per provider? Yes, with automatic rotation and failover.
+
+## Limitations
+
+- Windows only: no macOS, Linux, or mobile build
+- Cloud providers require your own paid or free-tier API key from that provider; costs
+  (if any) are the provider's, not QuickDictate's
+- Local models require a one-time download of 591 MiB to 1.65 GiB and disk space to match
+- No built-in cloud sync of settings across machines: settings.json is a local file you
+  copy or back up yourself
+
+See the top of this file for links (home, source, releases, license, pricing, maker).
