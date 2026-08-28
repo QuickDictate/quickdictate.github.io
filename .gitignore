@@ -76,3 +76,6 @@ venv/
 *.local
 og-*.png.tmp
 .chrome-tmp/
+
+# Generated symbol digest (~/.claude/tools/codemap.py) - local artifact, never committed.
+.claude/codemap/
