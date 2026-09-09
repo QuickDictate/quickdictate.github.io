@@ -8,6 +8,8 @@ This repo is just the site; the app lives in its own repo.
 - **The app:** https://github.com/LunarWerxs/QuickDictate
 - **By:** [LunarWerx Studios](https://lunarwerx.com)
 
+[![Discord](https://img.shields.io/badge/Discord-join_the_community-5865F2?logo=discord&logoColor=white)](https://discord.gg/PsWpeNUzhk)
+
 ![QuickDictate](assets/og-image.png)
 
 One hand-written `index.html` plus some images. No build step, no dependencies. Edit it
