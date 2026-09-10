@@ -2,7 +2,7 @@
 
 > A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key
 > cloud providers or optional fully offline Cohere and Whisper models. No subscription,
-> no QuickDictate account, zero telemetry.
+> no QuickDictate account, no analytics unless you opt in.
 
 Home: https://quickdictate.lunarwerx.com/
 Source: https://github.com/LunarWerxs/QuickDictate
@@ -92,7 +92,8 @@ https://quickdictate.lunarwerx.com/pricing.md
 
 ## Privacy
 
-Zero telemetry. No sign-up, no dashboard, no QuickDictate account. With Local selected,
+No sign-up, no dashboard, no QuickDictate account, and no analytics unless you opt in.
+With Local selected,
 audio is processed entirely on the PC. With a cloud provider, audio goes directly to only
 the service you chose, using your own key, and QuickDictate never sees or relays it. An
 optional daily GitHub check can install updates automatically, only after the download is
@@ -123,7 +124,10 @@ Cloud, or Local.
 
 What OS does it support? Windows 10 and Windows 11, 64-bit only.
 
-Does it collect data or require an account? No, zero telemetry, no QuickDictate account.
+Does it collect data or require an account? No account, and nothing you dictate is
+collected. The app makes one call of its own: a once-a-day update check carrying a random
+install id, which can be turned off. An anonymized usage rollup (totals and provider mix,
+no text) is off unless you opt in.
 
 Can I use multiple keys per provider? Yes, with automatic rotation and failover.
 

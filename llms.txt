@@ -6,7 +6,7 @@ QuickDictate is a Windows 10/11 x64 tray app for voice dictation: hold or tap a 
 
 ## Key facts
 - Free for personal and any other noncommercial use, source available under the PolyForm Noncommercial License 1.0.0 (commercial use by separate license), made by LunarWerx Studios.
-- No subscription, no QuickDictate account, and zero telemetry.
+- No subscription and no QuickDictate account. Nothing you dictate leaves the PC except to the provider whose key you supplied. The only call the app makes on its own is a once-a-day update check carrying a random install id; an anonymized usage rollup is available but off by default.
 - Six cloud providers: ElevenLabs, Deepgram, OpenAI, AssemblyAI, and DashScope stream words live; Google Cloud transcribes in batch. All are bring-your-own-key.
 - Local (offline) mode needs no key: choose Cohere Transcribe Q5 (1.65 GiB, accuracy-first default) or Whisper Large v3 Turbo Q5 (591 MiB, smaller with broader language coverage), managed entirely from Settings (install, select, cancel, delete).
 - Default hotkeys are F13 to hold and F14 to toggle, both changeable; supports "scratch that" voice correction, a custom fix-list for mishears, and per-app profiles.

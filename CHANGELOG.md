@@ -4,6 +4,30 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-09-10
+
+### Changed
+
+- **Corrected the privacy claims.** The page said "zero telemetry" in eight places (both
+  social meta descriptions, a hero badge, the visible FAQ answer, the FAQPage JSON-LD,
+  `llms.txt`, and `llms-full.txt` twice). That stopped being true when the app added an
+  opt-in anonymized usage rollup in v0.9.0, and had always overstated the daily update
+  check, which carries an anonymous install id. The badge now reads "Private by default"
+  and the FAQ names exactly what leaves the machine: nothing dictated, one daily update
+  check with a random install id that can be switched off, and a usage rollup that is off
+  until the user turns it on. This now matches the app's own security policy, which
+  documented both all along.
+- Advertised version bumped to v0.9.1 (JSON-LD `softwareVersion`, hero eyebrow, closing CTA).
+
+## 2026-09-10 (earlier)
+
+### Changed
+
+- Relicensing pass for the app's move to PolyForm Noncommercial 1.0.0 at v0.9.0: the last
+  MIT badge became "Free for personal use", the pricing page and `llms-full.txt` now state
+  the license and that releases through v0.8.0 stay MIT, and the social card was refreshed.
+- Advertised version bumped to v0.9.0, with a new Settings screenshot.
+
 ## 2026-07-24
 
 ### Changed
