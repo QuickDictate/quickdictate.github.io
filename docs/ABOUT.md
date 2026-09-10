@@ -1,6 +1,6 @@
 # QuickDictate site
 
-> Marketing site for a free, MIT-licensed Windows tray app that dictates speech into any app with no subscription.
+> Marketing site for a free-for-personal-use, source-available (PolyForm Noncommercial) Windows tray app that dictates speech into any app with no subscription.
 
 <!-- odin:about HAND-OWNED above the GENERATED marker. Edit freely; `odin codex about --ingest` carries it back into Odin's Codex. -->
 

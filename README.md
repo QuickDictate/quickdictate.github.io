@@ -18,4 +18,6 @@ and push to `main`; GitHub Pages redeploys in about a minute.
 The link-preview card (`assets/og-image.png`) comes from `tools/og-card.html`; the
 regen command is in that file's comment.
 
-MIT licensed. See [LICENSE](LICENSE) and [CHANGELOG.md](CHANGELOG.md).
+This site's own code is MIT licensed (see [LICENSE](LICENSE) and [CHANGELOG.md](CHANGELOG.md)).
+The app it describes is PolyForm Noncommercial 1.0.0 as of v0.9.0; see the
+[app's LICENSE](https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE).

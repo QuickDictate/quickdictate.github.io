@@ -1,8 +1,10 @@
 # QuickDictate - Pricing
 
-**QuickDictate is free and open source (MIT license).** There is no subscription, no paid
-tier, no QuickDictate account, and no purchase required to use any feature of the app
-itself.
+**QuickDictate is free for personal and any other noncommercial use (PolyForm
+Noncommercial License 1.0.0, source available).** There is no subscription, no paid tier,
+no QuickDictate account, and no purchase required to use any feature of the app itself.
+Commercial use needs a separate license from LunarWerx Studios; open a GitHub issue to
+arrange one.
 
 ## What you actually pay for
 
@@ -11,7 +13,7 @@ have, not a service it resells. It never bills you and never sees a payment meth
 
 | Component | Cost from QuickDictate | Who actually bills you |
 |---|---|---|
-| The QuickDictate app | $0 (MIT license) | nobody, LunarWerx Studios |
+| The QuickDictate app | $0 for noncommercial use (PolyForm Noncommercial license) | nobody, LunarWerx Studios |
 | Local mode: Cohere Transcribe Q5 (1.65 GiB) | $0 | nobody, runs on your PC, no key, no account |
 | Local mode: Whisper Large v3 Turbo Q5 (591 MiB) | $0 | nobody, runs on your PC, no key, no account |
 | Cloud: ElevenLabs | $0 | ElevenLabs, via the API key you supply |
@@ -27,7 +29,9 @@ QuickDictate does not set, cap, or mark those up.
 
 ## License
 
-MIT. Full text: https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
+PolyForm Noncommercial 1.0.0, starting with v0.9.0 (releases through v0.8.0 were MIT, and
+that grant stays in effect for those copies). Full text:
+https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
 
 ## Notes for procurement / buying agents
 
