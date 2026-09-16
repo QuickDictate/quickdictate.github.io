@@ -47,33 +47,33 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 
 ### Features
 
-16 recorded - 16 shipped, 0 partial, 0 planned. Each `path:line` is where the feature is DEFINED, checked by `odin codex check`.
+16 recorded - 16 shipped, 0 partial, 0 planned. Each path is where the feature is DEFINED; the exact lines live in the Codex entry, which `odin codex check` re-verifies and repairs.
 
 **Shipped**
 
-- **Hero/landing section** - Main call-to-action explaining core premise: press a key, speak, text lands in any app. - `index.html:847`
-- **Offline capabilities showcase** - Section explaining offline local models (Whisper-based) as alternative to cloud services. - `index.html:892`
-- **Features overview** - Highlights minimalist design and integration: native Windows, keyboard shortcuts, settings via JSON. - `index.html:928`
-- **Configuration display** - Shows example settings.json structure with copy-to-clipboard button; demonstrates how users configure the app. - `index.html:981`
-- **Provider comparison matrix** - Lists seven speech-to-text engines: six cloud (Google, Azure, AWS, OpenAI, Deepgram, Groq) and two offline (Whisper, Vosk). - `index.html:1026`
-- **Screenshots and UI tour** - Visual walkthrough of the app's single-window interface and tray integration. - `index.html:1058`
-- **Privacy commitment section** - States that no account is required and that nothing dictated reaches LunarWerx, whether the visitor uses an offline model or their own cloud API key. Corrected 2026-09-10: the page had claimed "zero telemetry" in eight places while the app shipped an opt-in anonymized usage rollup (v0.9.0) and a daily update check carrying an anonymous install id, both documented in the app's SECURITY.md. It now says "Private by default" and names what actually leaves the machine, so the copy, the FAQ JSON-LD, llms.txt and the security policy agree. - `index.html:1095`
-- **Comparison table (vs alternatives)** - Side-by-side comparison of QuickDictate vs paid/free alternatives (Copilot, Dragon, others) on cost, subscription, privacy, offline, platforms. - `index.html:1151`
-- **FAQ section** - Common questions: system requirements, supported apps, licensing, troubleshooting. Collapsible accordion layout. - `index.html:1183`
-- **Final CTA and Discord invite badge** - Closing call-to-action with download button and persistent Discord community invite badge in corner. - `index.html:1229`, `index.html:1321`
-- **Social preview card** - Generated og-image.png (1200x630) used for Twitter, Discord, Slack link previews. Regenerated via tools/og-card.html. - `tools/og-card.html:1`
-- **404 error page** - Custom 404 for GitHub Pages; directs users back to home. - `404.html:1`
-- **Pricing page** - Standalone pricing.md spells out that the app itself is free for personal and other noncommercial use (PolyForm Noncommercial 1.0.0, source available; commercial use by separate license from LunarWerx Studios) with no subscription or account, and that users only ever pay their chosen cloud provider directly. - `pricing.md:1`
-- **AI-agent discovery files (llms.txt)** - llms.txt and llms-full.txt give AI crawlers/agents a machine-readable product summary per the llms.txt standard, entirely separate from the human-facing index.html copy. - `llms.txt:1`, `llms-full.txt:1`
-- **Structured data / SEO schema markup** - JSON-LD blocks (SoftwareApplication, Organization, WebSite, BreadcrumbList, FAQPage) embedded in the page head for search-engine rich results; not mentioned anywhere in the original entry. - `index.html:690`
-- **Site changelog** - CHANGELOG.md tracks the marketing site's own edit history (separate from the app's changelog), contradicting the entry's own gaps claim that no changelog exists for the site. - `CHANGELOG.md:1`
+- **Hero/landing section** - Main call-to-action explaining core premise: press a key, speak, text lands in any app. - `index.html`
+- **Offline capabilities showcase** - Section explaining offline local models (Whisper-based) as alternative to cloud services. - `index.html`
+- **Features overview** - Highlights minimalist design and integration: native Windows, keyboard shortcuts, settings via JSON. - `index.html`
+- **Configuration display** - Shows example settings.json structure with copy-to-clipboard button; demonstrates how users configure the app. - `index.html`
+- **Provider comparison matrix** - Lists seven speech-to-text engines: six cloud (Google, Azure, AWS, OpenAI, Deepgram, Groq) and two offline (Whisper, Vosk). - `index.html`
+- **Screenshots and UI tour** - Visual walkthrough of the app's single-window interface and tray integration. - `index.html`
+- **Privacy commitment section** - States that no account is required and that nothing dictated reaches LunarWerx, whether the visitor uses an offline model or their own cloud API key. Corrected 2026-09-10: the page had claimed "zero telemetry" in eight places while the app shipped an opt-in anonymized usage rollup (v0.9.0) and a daily update check carrying an anonymous install id, both documented in the app's SECURITY.md. It now says "Private by default" and names what actually leaves the machine, so the copy, the FAQ JSON-LD, llms.txt and the security policy agree. - `index.html`
+- **Comparison table (vs alternatives)** - Side-by-side comparison of QuickDictate vs paid/free alternatives (Copilot, Dragon, others) on cost, subscription, privacy, offline, platforms. - `index.html`
+- **FAQ section** - Common questions: system requirements, supported apps, licensing, troubleshooting. Collapsible accordion layout. - `index.html`
+- **Final CTA and Discord invite badge** - Closing call-to-action with download button and persistent Discord community invite badge in corner. - `index.html`
+- **Social preview card** - Generated og-image.png (1200x630) used for Twitter, Discord, Slack link previews. Regenerated via tools/og-card.html. - `tools/og-card.html`
+- **404 error page** - Custom 404 for GitHub Pages; directs users back to home. - `404.html`
+- **Pricing page** - Standalone pricing.md spells out that the app itself is free for personal and other noncommercial use (PolyForm Noncommercial 1.0.0, source available; commercial use by separate license from LunarWerx Studios) with no subscription or account, and that users only ever pay their chosen cloud provider directly. - `pricing.md`
+- **AI-agent discovery files (llms.txt)** - llms.txt and llms-full.txt give AI crawlers/agents a machine-readable product summary per the llms.txt standard, entirely separate from the human-facing index.html copy. - `llms.txt`, `llms-full.txt`
+- **Structured data / SEO schema markup** - JSON-LD blocks (SoftwareApplication, Organization, WebSite, BreadcrumbList, FAQPage) embedded in the page head for search-engine rich results; not mentioned anywhere in the original entry. - `index.html`
+- **Site changelog** - CHANGELOG.md tracks the marketing site's own edit history (separate from the app's changelog), contradicting the entry's own gaps claim that no changelog exists for the site. - `CHANGELOG.md`
 
 ### Where to add a new one
 
-- **a new section or feature block** - add a <section> element with class='section' or 'section container' before the closing </main>, with semantic heading (id, aria-labelledby) and inline styles using CSS variables; follow existing typography and spacing scale anchors: `index.html:241`
-- **a new link in the nav or footer** - edit .nav-links list or footer links; update href and text content; no build required, test by opening index.html in a browser and pushing to main anchors: `index.html:165`
-- **regenerate the social card image** - edit tools/og-card.html (text, styling, layout), save it, open in browser, screenshot to 1200x630, save as assets/og-image.png; instructions in og-card.html's comment anchors: `tools/og-card.html:1`
-- **update the FAQ or comparison table** - edit the HTML sections for #faq or #compare inside index.html; table rows, accordion items, or text are inline; no JS build, just refresh browser after edit anchors: `index.html:317`
+- **a new section or feature block** - add a <section> element with class='section' or 'section container' before the closing </main>, with semantic heading (id, aria-labelledby) and inline styles using CSS variables; follow existing typography and spacing scale anchors: `index.html`
+- **a new link in the nav or footer** - edit .nav-links list or footer links; update href and text content; no build required, test by opening index.html in a browser and pushing to main anchors: `index.html`
+- **regenerate the social card image** - edit tools/og-card.html (text, styling, layout), save it, open in browser, screenshot to 1200x630, save as assets/og-image.png; instructions in og-card.html's comment anchors: `tools/og-card.html`
+- **update the FAQ or comparison table** - edit the HTML sections for #faq or #compare inside index.html; table rows, accordion items, or text are inline; no JS build, just refresh browser after edit anchors: `index.html`
 
 ### Gaps and wants
 
@@ -83,4 +83,4 @@ _Read it with `python odin.py codex brief quickdictate-github-io` in the Odin cl
 ---
 
 _Generated by `odin codex about --publish quickdictate-github-io` on 2026-09-16 from a Codex dossier stamped 2026-09-14. Regenerate after the product moves; `odin codex about` reports drift._
-<!-- odin:about GENERATED END sha=517f1194e8f5 -->
+<!-- odin:about GENERATED END sha=2097f58fa28b -->
