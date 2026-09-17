@@ -4,6 +4,31 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-09-17
+
+### Changed
+
+- **Removed every em-dash from the visible copy.** A standing style rule that had never been
+  applied to the pages already published. Each one became the punctuation that fits its
+  sentence, and the rewrite was gated on the page's word-stream being identical afterwards,
+  so only punctuation moved.
+- **Shortened the long paragraphs.** Every visible paragraph is now under 40 words. No fact
+  left the page; the second and third sentences did. The long-form still lives in `llms.txt`,
+  `llms-full.txt` and the FAQ structured data.
+
+### Added
+
+- **A copy gate, `scripts/copy-budget.mjs`,** run by CI on every push to the page. Em-dashes
+  are a hard zero; page length is a ratchet against a recorded baseline rather than a fixed
+  bar, so the page can shrink but cannot creep back.
+
+### Reverted
+
+- **Collapsible page sections, shipped and pulled the same day.** Hiding a section's body
+  behind a disclosure left the heading and a small button alone in a tall empty band, because
+  the sections keep their own padding. It had been checked by measuring element boxes rather
+  than by looking at it. The pages are byte-identical to before that change.
+
 ## 2026-09-10
 
 ### Changed
