@@ -625,6 +625,18 @@
   .faq-item>summary:hover{color:var(--coral)}
   .faq-item>summary:focus-visible{outline:2px solid var(--coral);outline-offset:-2px;border-radius:10px}
   .faq-a{padding:0 16px 15px;margin:0;color:var(--muted);line-height:1.6;max-width:72ch}
+
+  /* Progressive disclosure for the specialist half of the page: the heading and its one
+     line stay visible, the body is one click away. Nothing is removed from the DOM. */
+  details.more{margin-top:18px}
+  details.more>summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    list-style:none;font:inherit;font-size:.92rem;font-weight:600;opacity:.75;
+    padding:7px 13px;border:1px solid currentColor;border-radius:999px;width:auto}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary::after{content:"+";font-weight:700;line-height:1}
+  details.more[open]>summary::after{content:"\2013"}
+  details.more>summary:hover{opacity:1}
+  details.more[open]>summary{margin-bottom:18px}
 </style>
 <style>
 /* Back to the parent studio: a bare arrow at the top left of the page.
@@ -910,7 +922,8 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <p>Pick Local in Settings, install one model, and keep every recording on your PC. No key and no QuickDictate account required.</p>
       </div>
 
-      <div class="feature-grid">
+      <details class="more"><summary>How offline mode works</summary>
+<div class="feature-grid">
         <div class="card blue">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 16.5v-9Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
           <h3>Two local models</h3>
@@ -932,6 +945,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
         <p><b>v0.5 stays lighter over long sessions:</b> bounded buffers, chunked long Google recordings, less idle polling, and a batch of paste and restart fixes.</p>
       </div>
+</details>
     </div>
   </section>
 
@@ -947,7 +961,8 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       </div>
 
       <div class="feature-grid">
-        <div class="card">
+        <details class="more"><summary>See all seven features</summary>
+<div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4m-3 0h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
           <h3>Cloud or fully local</h3>
           <p>Bring a key to one of six cloud services, or install an optional local model and keep your audio on the PC.</p>
@@ -984,6 +999,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           <h3>Per-app profiles</h3>
           <p>Dictate one way in your editor and another in Slack. It spots which app you're in and switches on its own.</p>
         </div>
+</details>
       </div>
     </div>
   </section>
@@ -998,7 +1014,8 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <h2 id="config-heading">One small Settings window. Plain JSON underneath.</h2>
         <p>Paste a cloud key, or pick Local and install a model with no key at all.</p>
         <ul>
-          <li>
+          <details class="more"><summary>What you can configure</summary>
+<li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span><b>Local is managed in the app.</b> Pick Cohere or Whisper, then install, cancel, switch, or delete it from the same screen.</span>
           </li>
@@ -1010,6 +1027,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span><b>It's just a file</b>, so back it up, throw it in git, or copy it to a new machine in seconds.</span>
           </li>
+</details>
         </ul>
       </div>
 
@@ -1044,7 +1062,8 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <p>Use six bring-your-own-key services, or process audio on your PC with an optional Cohere or Whisper model. Switch whenever you like.</p>
       </div>
 
-      <div class="provider-strip">
+      <details class="more"><summary>See the seven engines</summary>
+<div class="provider-strip">
         <div class="provider-chip"><span class="p-name">ElevenLabs</span><span class="p-tag">streaming</span></div>
         <div class="provider-chip"><span class="p-name">Deepgram</span><span class="p-tag">streaming</span></div>
         <div class="provider-chip"><span class="p-name">OpenAI</span><span class="p-tag">streaming</span></div>
@@ -1062,6 +1081,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         <p><b>Stack a few keys for one cloud provider</b> and QuickDictate spreads requests across them, routing around any that go down.</p>
       </div>
+</details>
     </div>
   </section>
 
@@ -1114,7 +1134,8 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <h2 id="privacy-heading">Choose cloud, or keep every word local.</h2>
             <p class="lead">Local keeps audio on your PC. Cloud sends it straight to the one service you chose, on your key. No server in the middle.</p>
             <ul class="trust-list">
-              <li>
+              <details class="more"><summary>Read the privacy detail</summary>
+<li>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <div><b>Fully offline when you want it</b><span class="d">Microphone audio is processed on this PC. No API key or internet connection is needed after installation.</span></div>
               </li>
@@ -1130,6 +1151,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <div><b>Source available, free for personal use</b><span class="d">It's all on GitHub under the PolyForm Noncommercial license. Read it, build it, change it, share it; commercial use is by separate license.</span></div>
               </li>
+</details>
             </ul>
           </div>
 
