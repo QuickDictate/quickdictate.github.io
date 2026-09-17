@@ -612,6 +612,19 @@
     .hero { padding-bottom: 50px; }
     .footer-grid { flex-direction: column; align-items: flex-start; }
   }
+  /* FAQ, collapsed. Eight expanded answers were a third of this page's words and all
+     of them below the fold; a summary row per question keeps the coverage (and the
+     FAQPage rich result) without the wall. Same pattern as RepoYeti and SageThumbs.
+     Every answer is also in the FAQPage JSON-LD, so nothing is lost by collapsing. */
+  .faq-list{display:grid;gap:9px;max-width:840px}
+  .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:10px}
+  .faq-item>summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:12px;transition:color .15s}
+  .faq-item>summary::-webkit-details-marker{display:none}
+  .faq-item>summary::after{content:"+";margin-left:auto;font-size:17px;line-height:1;color:var(--muted)}
+  .faq-item[open]>summary::after{content:"\2212"}
+  .faq-item>summary:hover{color:var(--coral)}
+  .faq-item>summary:focus-visible{outline:2px solid var(--coral);outline-offset:-2px;border-radius:10px}
+  .faq-a{padding:0 16px 15px;margin:0;color:var(--muted);line-height:1.6;max-width:72ch}
 </style>
 <style>
 /* Back to the parent studio: a bare arrow at the top left of the page.
@@ -1188,39 +1201,39 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <p>Straight answers, pulled from the same details already on this page.</p>
       </div>
 
-      <div class="feature-grid">
-        <div class="card">
-          <h3>Is QuickDictate free?</h3>
-          <p>Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is by separate license from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC — there is no QuickDictate transcription server in the middle.</p>
-        </div>
-        <div class="card">
-          <h3>Does QuickDictate work offline?</h3>
-          <p>Yes. Choose Local in Settings, install one model, and keep every recording on your PC — no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage.</p>
-        </div>
-        <div class="card">
-          <h3>Which speech-to-text providers can I use?</h3>
-          <p>QuickDictate supports six bring-your-own-key cloud services — ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud — plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work.</p>
-        </div>
-        <div class="card">
-          <h3>What operating systems does QuickDictate support?</h3>
-          <p>QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus — an editor, a chat box, a terminal, or a web form.</p>
-        </div>
-        <div class="card">
-          <h3>Does QuickDictate require an account or collect my data?</h3>
-          <p>No account, no sign-up, and no dashboard. Nothing you dictate ever reaches us: with Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key — there is no QuickDictate transcription server in the middle. The only thing QuickDictate sends on its own is a once-a-day update check, which carries a random install id and nothing else, and you can switch it off. An anonymized usage rollup (word and dictation totals, which providers you use) exists too, and it is off until you turn it on.</p>
-        </div>
-        <div class="card">
-          <h3>Can I use multiple API keys with one provider?</h3>
-          <p>Yes. If you stack a few keys for one cloud provider, QuickDictate spreads requests across them and automatically routes around any key that is dead or throttled. Settings also let you install, select, cancel a download for, or delete either local model at any time.</p>
-        </div>
-        <div class="card">
-          <h3>How is QuickDictate different from Windows' built-in dictation or Dragon?</h3>
-          <p>Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or two offline models, typing into any focused app with global hotkeys and per-app profiles.</p>
-        </div>
-        <div class="card">
-          <h3>What does QuickDictate cost?</h3>
-          <p>QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account, and no paid tier. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's two offline models are free to download and run, with no key or account needed at all.</p>
-        </div>
+      <div class="faq-list">
+              <details class="faq-item">
+        <summary>Is QuickDictate free?</summary>
+        <p class="faq-a">Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is by separate license from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC — there is no QuickDictate transcription server in the middle.</p>
+      </details>
+              <details class="faq-item">
+        <summary>Does QuickDictate work offline?</summary>
+        <p class="faq-a">Yes. Choose Local in Settings, install one model, and keep every recording on your PC — no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage.</p>
+      </details>
+              <details class="faq-item">
+        <summary>Which speech-to-text providers can I use?</summary>
+        <p class="faq-a">QuickDictate supports six bring-your-own-key cloud services — ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud — plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work.</p>
+      </details>
+              <details class="faq-item">
+        <summary>What operating systems does QuickDictate support?</summary>
+        <p class="faq-a">QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus — an editor, a chat box, a terminal, or a web form.</p>
+      </details>
+              <details class="faq-item">
+        <summary>Does QuickDictate require an account or collect my data?</summary>
+        <p class="faq-a">No account, no sign-up, and no dashboard. Nothing you dictate ever reaches us: with Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key — there is no QuickDictate transcription server in the middle. The only thing QuickDictate sends on its own is a once-a-day update check, which carries a random install id and nothing else, and you can switch it off. An anonymized usage rollup (word and dictation totals, which providers you use) exists too, and it is off until you turn it on.</p>
+      </details>
+              <details class="faq-item">
+        <summary>Can I use multiple API keys with one provider?</summary>
+        <p class="faq-a">Yes. If you stack a few keys for one cloud provider, QuickDictate spreads requests across them and automatically routes around any key that is dead or throttled. Settings also let you install, select, cancel a download for, or delete either local model at any time.</p>
+      </details>
+              <details class="faq-item">
+        <summary>How is QuickDictate different from Windows' built-in dictation or Dragon?</summary>
+        <p class="faq-a">Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or two offline models, typing into any focused app with global hotkeys and per-app profiles.</p>
+      </details>
+              <details class="faq-item">
+        <summary>What does QuickDictate cost?</summary>
+        <p class="faq-a">QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account, and no paid tier. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's two offline models are free to download and run, with no key or account needed at all.</p>
+      </details>
       </div>
     </div>
   </section>
