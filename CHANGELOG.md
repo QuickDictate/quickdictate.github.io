@@ -8,6 +8,8 @@ the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/Lu
 
 ### Changed
 
+- **Site version 1.0.0** (was 0.1.0): no public project stays on a zero major (owner directive, 2026-09-18). The app version the page advertises is still synced from the latest published release.
+
 - **Commercial use has a price.** The pricing page, the FAQ (visible and structured data),
   the feature list, `llms.txt` and `llms-full.txt` now say US$19.99 once or US$1.99 a month per
   installation, with the Connections checkout links, instead of "by separate license". Free
