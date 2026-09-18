@@ -4,6 +4,17 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-09-18
+
+### Changed
+
+- **Commercial use has a price.** The pricing page, the FAQ (visible and structured data),
+  the feature list, `llms.txt` and `llms-full.txt` now say US$19.99 once or US$1.99 a month per
+  installation, with the Connections checkout links, instead of "by separate license". Free
+  for personal and other noncommercial use, unchanged.
+- **Version 0.10.0** in the JSON-LD, the hero eyebrow and the closing line, synced from the
+  published release.
+
 ## 2026-09-17
 
 ### Changed

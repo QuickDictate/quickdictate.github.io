@@ -7,7 +7,7 @@
 Home: https://quickdictate.lunarwerx.com/
 Source: https://github.com/LunarWerxs/QuickDictate
 Download: https://github.com/LunarWerxs/QuickDictate/releases/latest
-License: PolyForm Noncommercial 1.0.0 (free for noncommercial use, source available; commercial use by separate license), https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
+License: PolyForm Noncommercial 1.0.0 (free for noncommercial use, source available; commercial use US$19.99 once or US$1.99/month per installation), https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
 Pricing: https://quickdictate.lunarwerx.com/pricing.md
 Maker: LunarWerx Studios, https://lunarwerx.com/
 Last updated: 2026-08-23
@@ -82,8 +82,8 @@ provider releases its RAM and VRAM.
 ## Pricing
 
 QuickDictate is free for personal and any other noncommercial use under the PolyForm
-Noncommercial License 1.0.0, with the source on GitHub; commercial use needs a separate
-license from LunarWerx Studios (releases through v0.8.0 were MIT). No subscription, no
+Noncommercial License 1.0.0, with the source on GitHub; commercial use needs a license
+from LunarWerx Studios, US$19.99 once or US$1.99 a month per installation (releases through v0.8.0 were MIT). No subscription, no
 QuickDictate account, no paid tier. Local mode costs nothing beyond the one-time model
 download. Cloud providers are bring-your-own-key: whatever ElevenLabs, Deepgram, OpenAI,
 AssemblyAI, DashScope, or Google Cloud charge for their own API is billed to you directly
@@ -115,7 +115,7 @@ verified.
 
 ## FAQ
 
-Is QuickDictate free? Yes for personal and other noncommercial use (PolyForm Noncommercial, source available), no subscription, no account; commercial use is by separate license.
+Is QuickDictate free? Yes for personal and other noncommercial use (PolyForm Noncommercial, source available), no subscription, no account; commercial use is US$19.99 once or US$1.99 a month per installation.
 
 Does QuickDictate work offline? Yes, via Local mode with the Cohere or Whisper model.
 
