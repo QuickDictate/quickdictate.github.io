@@ -657,7 +657,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
 @media (hover:none){a.lw-parent .lw-tip{display:none}}
 @media (prefers-reduced-motion:reduce){a.lw-parent .lw-tip{transition:opacity .12s ease,visibility 0s linear .12s;transform:none}a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{transform:none}}
 </style>
-    <!-- ARGUS Analytics Pixel (Connections, analytics.connections.icu).
+    <!-- ARGUS Analytics Pixel (Connections, analytics.connectionsapi.com).
          The key is a PUBLIC ingest key and is meant to ship in client JS.
          Honours DNT and Sec-GPC by itself, and is grant-by-default outside the
          EU/EEA/UK/CH (the pixel is stamped per-visitor at the edge). localhost
@@ -689,7 +689,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
                 // ?v= is the cache-bust lever: the pixel is served max-age=3600
                 // from ONE origin shared by every tracked site, so bump this when
                 // a pixel change has to reach existing readers now.
-                j.src = 'https://analytics.connections.icu/pixel.js?v=2';
+                j.src = 'https://analytics.connectionsapi.com/pixel.js?v=2';
                 j.onerror = function () { warn('[ARGUS] pixel.js failed to load (check CSP script-src / network / ad-blocker)'); };
                 var mount = d.head || d.getElementsByTagName('head')[0] || d.documentElement || d.body;
                 if (!mount) { warn('[ARGUS] no DOM mount point for pixel; skipping'); return; }
@@ -1204,7 +1204,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       <div class="faq-list">
               <details class="faq-item">
         <summary>Is QuickDictate free?</summary>
-        <p class="faq-a">Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is licensed per installation: <a href="https://checkout.connections.icu/licence/a0aab7bb-ba43-4d7f-8772-3c93659bad68">US$19.99 once</a> or <a href="https://checkout.connections.icu/licence/41b7e7f1-67b8-40ba-9d49-7ced20358da7">US$1.99 a month</a> from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC; there is no QuickDictate transcription server in the middle.</p>
+        <p class="faq-a">Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is licensed per installation: <a href="https://checkout.connectionsapi.com/licence/a0aab7bb-ba43-4d7f-8772-3c93659bad68">US$19.99 once</a> or <a href="https://checkout.connectionsapi.com/licence/41b7e7f1-67b8-40ba-9d49-7ced20358da7">US$1.99 a month</a> from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC; there is no QuickDictate transcription server in the middle.</p>
       </details>
               <details class="faq-item">
         <summary>Does QuickDictate work offline?</summary>
