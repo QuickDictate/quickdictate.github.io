@@ -41,7 +41,7 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 ### Architecture
 
 - `index.html` - Hand-written single-page landing site; all content, structure, and inline styles in one file. No dependencies.
-- `assets/` - Static images: icon-256.png (favicon), og-image.png (social card), app screenshots, brand assets
+- `assets/` - Static images: PNG masters (icon-256.png, app screenshots, brand assets), og-image.png (social card), and the small WebP copies plus icon-64.png (favicon) that the pages actually load, written by `python scripts/optimize_images.py`
 - `tools/` - OG image card generator (og-card.html); used to regenerate og-image.png for social sharing
 - `404.html` - Custom 404 error page for GitHub Pages
 
