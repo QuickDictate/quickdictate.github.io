@@ -500,6 +500,9 @@
   .shot-body img {
     width: 100%;
     max-width: 340px;
+    /* The real shape: with no height here the height attribute (415) was
+       applied as-is and both screenshots were drawn squashed into 340x415. */
+    height: auto;
     border-radius: 8px;
     border: 1px solid var(--border);
   }
@@ -1083,7 +1086,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <span class="shot-title">Settings: Providers</span>
           </div>
           <div class="shot-body">
-            <img src="assets/settings.webp" loading="lazy" decoding="async" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="340" height="415">
+            <img src="assets/settings.webp" loading="lazy" decoding="async" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="760" height="600">
           </div>
           <p class="shot-caption">Providers, keys, hotkeys, and the everyday toggles on one screen.</p>
         </div>
@@ -1094,7 +1097,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <span class="shot-title">Settings: Replacements</span>
           </div>
           <div class="shot-body">
-            <img src="assets/text-replacements.webp" loading="lazy" decoding="async" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="340" height="415">
+            <img src="assets/text-replacements.webp" loading="lazy" decoding="async" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="600" height="772">
           </div>
           <p class="shot-caption">The replacement table. Teach it your words once and forget about it.</p>
         </div>
