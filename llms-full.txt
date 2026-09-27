@@ -2,7 +2,7 @@
 
 > A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key
 > cloud providers or optional fully offline Cohere and Whisper models. No subscription,
-> no QuickDictate account, no analytics unless you opt in.
+> no QuickDictate account.
 
 Home: https://quickdictate.lunarwerx.com/
 Source: https://github.com/LunarWerxs/QuickDictate
@@ -92,7 +92,7 @@ https://quickdictate.lunarwerx.com/pricing.md
 
 ## Privacy
 
-No sign-up, no dashboard, no QuickDictate account, and no analytics unless you opt in.
+No sign-up, no dashboard, no QuickDictate account.
 With Local selected,
 audio is processed entirely on the PC. With a cloud provider, audio goes directly to only
 the service you chose, using your own key, and QuickDictate never sees or relays it. An
