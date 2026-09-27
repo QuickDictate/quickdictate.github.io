@@ -497,9 +497,9 @@
     color: var(--faint);
   }
   .shot-body { padding: 24px; display: flex; justify-content: center; background: radial-gradient(ellipse at top, rgba(46,125,246,0.06), transparent 70%); }
+  .shot-body a { display: block; width: 100%; cursor: zoom-in; }
   .shot-body img {
     width: 100%;
-    max-width: 340px;
     /* The real shape: with no height here the height attribute (415) was
        applied as-is and both screenshots were drawn squashed into 340x415. */
     height: auto;
@@ -507,6 +507,10 @@
     border: 1px solid var(--border);
   }
   .shot-caption { padding: 0 24px 22px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+  /* Click a screenshot: the real-size picture over the page (the thumbnails are too small to read). */
+  .shot-zoom { padding: 0; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); max-width: 96vw; max-height: 92vh; overflow: auto; }
+  .shot-zoom::backdrop { background: rgba(5,10,20,0.82); }
+  .shot-zoom img { width: auto; max-width: 96vw; height: auto; display: block; cursor: zoom-out; }
 
   /* ---------- Trust / privacy ---------- */
   .trust {
@@ -770,7 +774,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "Is QuickDictate free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is licensed per installation: US$19.99 once or US$1.99 a month from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC — there is no QuickDictate transcription server in the middle."
+            "text": "Yes, QuickDictate is free for personal and any other noncommercial use under the PolyForm Noncommercial license (the source is on GitHub), with no subscription, no QuickDictate account, and no monthly bill; commercial use is licensed per installation: US$19.99 once or US$1.99 a month from LunarWerx Studios. Cloud audio goes only to the provider you pick using your own key, and Local mode processes everything on your PC; there is no QuickDictate transcription server in the middle."
           }
         },
         {
@@ -778,7 +782,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "Does QuickDictate work offline?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Choose Local in Settings, install one model, and keep every recording on your PC — no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage."
+            "text": "Yes. Choose Local in Settings, install one model, and keep every recording on your PC; no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage."
           }
         },
         {
@@ -786,7 +790,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "Which speech-to-text providers can I use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "QuickDictate supports six bring-your-own-key cloud services — ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud — plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work."
+            "text": "QuickDictate supports six bring-your-own-key cloud services: ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, and Google Cloud, plus an optional fully offline Local mode with no key at all. Five cloud engines stream words as you talk; Google Cloud and Local finish after you release the hotkey, with clear processing feedback while they work."
           }
         },
         {
@@ -794,7 +798,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "What operating systems does QuickDictate support?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus — an editor, a chat box, a terminal, or a web form."
+            "text": "QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus: an editor, a chat box, a terminal, or a web form. No F13 or F14 on your keyboard? Pick any other key, combo or mouse button in Settings > Dictation."
           }
         },
         {
@@ -802,7 +806,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "Does QuickDictate require an account or collect my data?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No account, no sign-up, and no dashboard. Nothing you dictate ever reaches us: with Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key — there is no QuickDictate transcription server in the middle. The only thing QuickDictate sends on its own is a once-a-day update check, which carries a random install id and nothing else, and you can switch it off. An anonymized usage rollup (word and dictation totals, which providers you use) exists too, and it is off until you turn it on."
+            "text": "No account, no sign-up, and no dashboard. Nothing you dictate ever reaches us: with Local selected, audio is processed entirely on your PC; with a cloud provider, it goes directly to only the service you chose, using your own key; there is no QuickDictate transcription server in the middle. The only thing QuickDictate sends on its own is a once-a-day update check, which carries a random install id and nothing else, and you can switch it off. An anonymized usage rollup (word and dictation totals, which providers you use) exists too, and it is off until you turn it on."
           }
         },
         {
@@ -904,11 +908,11 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
 
   <hr class="divider">
 
-  <!-- ============ V0.5 / OFFLINE ============ -->
+  <!-- ============ OFFLINE ============ -->
   <section class="section" id="offline" aria-labelledby="offline-heading">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">// new in v0.5.0</p>
+        <p class="eyebrow">// offline mode</p>
         <h2 id="offline-heading">Go fully offline, without turning setup into a project.</h2>
         <p>Pick Local in Settings, install one model, and keep every recording on your PC. No key and no QuickDictate account required.</p>
       </div>
@@ -933,7 +937,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
 
       <div class="provider-note">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.6"/></svg>
-        <p><b>v0.5 stays lighter over long sessions:</b> bounded buffers, chunked long Google recordings, less idle polling, and a batch of paste and restart fixes.</p>
+        <p><b>Stays light over long sessions:</b> bounded buffers, chunked long Google recordings, less idle polling, and a batch of paste and restart fixes.</p>
       </div>
     </div>
   </section>
@@ -969,7 +973,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <div class="card blue wide">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 20V10m0 0 5 5m-5-5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 4h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
           <h3>Hold it or tap it</h3>
-          <p>Hold to talk or tap to start and stop. Defaults are <kbd>F13</kbd> and <kbd>F14</kbd>, and you can change them.</p>
+          <p>Hold to talk or tap to start and stop. Defaults are <kbd>F13</kbd> and <kbd>F14</kbd>. Keyboard stops at F12? In Settings &gt; Dictation, click the dot in a hotkey box and press any key, combo or mouse button.</p>
         </div>
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 12l4-4M5 12l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -1086,7 +1090,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <span class="shot-title">Settings: Providers</span>
           </div>
           <div class="shot-body">
-            <img src="assets/settings.webp" loading="lazy" decoding="async" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="760" height="600">
+            <a href="assets/settings.webp" class="shot-zoom-open"><img src="assets/settings.webp" loading="lazy" decoding="async" alt="QuickDictate Settings window showing the speech-to-text provider picker, API key manager, and hotkey toggles" width="760" height="600"></a>
           </div>
           <p class="shot-caption">Providers, keys, hotkeys, and the everyday toggles on one screen.</p>
         </div>
@@ -1097,7 +1101,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
             <span class="shot-title">Settings: Replacements</span>
           </div>
           <div class="shot-body">
-            <img src="assets/text-replacements.webp" loading="lazy" decoding="async" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="600" height="772">
+            <a href="assets/text-replacements.webp" class="shot-zoom-open"><img src="assets/text-replacements.webp" loading="lazy" decoding="async" alt="QuickDictate text-replacements editor showing a table of misheard phrases mapped to corrected text" width="600" height="772"></a>
           </div>
           <p class="shot-caption">The replacement table. Teach it your words once and forget about it.</p>
         </div>
@@ -1219,7 +1223,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       </details>
               <details class="faq-item">
         <summary>What operating systems does QuickDictate support?</summary>
-        <p class="faq-a">QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus: an editor, a chat box, a terminal, or a web form.</p>
+        <p class="faq-a">QuickDictate runs on Windows 10 and Windows 11, 64-bit, as a small tray app. Hold the F13 hotkey to talk, or tap F14 to toggle recording on and off, and your speech types directly into whatever app has focus: an editor, a chat box, a terminal, or a web form. No F13 or F14 on your keyboard? Pick any other key, combo or mouse button in Settings &gt; Dictation.</p>
       </details>
               <details class="faq-item">
         <summary>Does QuickDictate require an account or collect my data?</summary>
@@ -1284,6 +1288,28 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
   </div>
 </footer>
 
+<dialog class="shot-zoom" id="shotZoom" aria-label="Screenshot at full size"><img alt=""></dialog>
+<script>
+  // A screenshot opens at its real size in a dialog; a click anywhere or Esc closes it. Without
+  // script (or <dialog>) the link opens the picture itself.
+  (function(){
+    var box = document.getElementById('shotZoom');
+    if(!box || typeof box.showModal !== 'function') return;
+    var big = box.querySelector('img');
+    document.querySelectorAll('.shot-zoom-open').forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var small = a.querySelector('img');
+        big.src = a.getAttribute('href');
+        big.alt = small.alt;
+        big.width = small.getAttribute('width');
+        big.height = small.getAttribute('height');
+        box.showModal();
+      });
+    });
+    box.addEventListener('click', function(){ box.close(); });
+  })();
+</script>
 <script>
   (function(){
     var btn = document.getElementById('copyBtn');

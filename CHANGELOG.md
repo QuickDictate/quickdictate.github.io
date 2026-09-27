@@ -4,6 +4,20 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-09-27
+
+### Changed
+
+- **The offline section no longer says "new in v0.5.0"** under a v1.2.2 hero; it is headed
+  "offline mode" and the long-session note lost its version too.
+- **F13 and F14 come with the way out.** The hotkey card and the operating-systems FAQ say
+  that a keyboard ending at F12 picks any key, combo or mouse button in Settings > Dictation.
+- **The two Settings screenshots are drawn at their column's width and open at full size**
+  in a dialog when clicked (a link to the picture without script); they were squeezed to
+  340 px and unreadable.
+- **The structured-data FAQ matches the visible FAQ word for word** again (five answers had
+  drifted and still carried em dashes).
+
 ## 2026-09-18
 
 ### Changed
