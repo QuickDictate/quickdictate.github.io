@@ -37,5 +37,5 @@ The app it describes is PolyForm Noncommercial 1.0.0 as of v0.9.0; see the
 It measures what a visitor actually reads, so collapsed `<details>`, elements with a `hidden`
 attribute and `<noscript>` do not count. A naive word count reads about three times high.
 
-To see a change rather than measure it, use `~/.claude/tools/shot/shotpage.mjs`, which
-screenshots the page with the scroll-reveal animations forced to their finished state.
+To see a change rather than measure it, screenshot the page with its animations forced to
+their finished state; [docs/screenshots.md](docs/screenshots.md) has the headless Chrome command.
