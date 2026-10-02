@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QuickDictate: Cloud or offline speech-to-text for Windows</title>
-<meta name="description" content="A tiny Windows tray app for speech-to-text. Six bring-your-own-key cloud providers or two offline models. Free for personal use with no subscription or account; source available.">
+<meta name="description" content="A tiny Windows tray app for speech-to-text. Six bring-your-own-key cloud providers or three offline models. Free for personal use with no subscription or account; source available.">
 <link rel="icon" href="assets/icon-64.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="QuickDictate">
@@ -722,10 +722,10 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       "@type": "SoftwareApplication",
       "@id": "https://quickdictate.lunarwerx.com/#app",
       "name": "QuickDictate",
-      "description": "A tiny Windows tray app for speech-to-text. Six bring-your-own-key cloud providers or two offline models. Free for personal use with no subscription or account; source available.",
+      "description": "A tiny Windows tray app for speech-to-text. Six bring-your-own-key cloud providers or three offline models. Free for personal use with no subscription or account; source available.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Windows 10/11 x64",
-      "softwareVersion": "1.2.2",
+      "softwareVersion": "1.3.0",
       "url": "https://quickdictate.lunarwerx.com/",
       "downloadUrl": "https://github.com/LunarWerxs/QuickDictate/releases/latest/download/quickdictate.exe",
       "image": "https://quickdictate.lunarwerx.com/assets/og-image.png",
@@ -737,7 +737,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         "Scratch that",
         "Fixes what it mishears",
         "Per-app profiles",
-        "Two local models",
+        "Three local models",
         "One-click model management",
         "Warm, visible, and ready"
       ],
@@ -789,7 +789,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "Does QuickDictate work offline?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Choose Local in Settings, install one model, and keep every recording on your PC; no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage."
+            "text": "Yes. Choose Local in Settings, install one model, and keep every recording on your PC; no API key or internet connection is needed after installation. QuickDictate offers three local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, Whisper Large v3 Turbo Q5, a 591 MiB option with the broadest language coverage, and Parakeet TDT v3 Q5, a 524 MiB option that is the fastest and covers 25 European languages."
           }
         },
         {
@@ -829,7 +829,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "How is QuickDictate different from Windows' built-in dictation or Dragon?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or two offline models, typing into any focused app with global hotkeys and per-app profiles."
+            "text": "Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or three offline models, typing into any focused app with global hotkeys and per-app profiles."
           }
         },
         {
@@ -837,7 +837,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
           "name": "What does QuickDictate cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account and no feature held back for a paid tier; using it at work needs a licence, US$19.99 once or US$1.99 a month per PC. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's two offline models are free to download and run, with no key or account needed at all."
+            "text": "QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account and no feature held back for a paid tier; using it at work needs a licence, US$19.99 once or US$1.99 a month per PC. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's three offline models are free to download and run, with no key or account needed at all."
           }
         }
       ]
@@ -874,9 +874,9 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
   <section class="hero container" aria-labelledby="hero-heading">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">quickdictate · <span class="js-app-version">v1.2.2</span> · windows 10/11 x64</p>
+        <p class="eyebrow">quickdictate · <span class="js-app-version">v1.3.0</span> · windows 10/11 x64</p>
         <h1 id="hero-heading">Press a key, talk, and your words land <span class="accent">wherever your cursor already is.</span></h1>
-        <p class="hero-sub">Hold a hotkey and dictate into any app. Use six cloud providers, or install Cohere or Whisper for fully offline speech recognition.</p>
+        <p class="hero-sub">Hold a hotkey and dictate into any app. Use six cloud providers, or install Cohere, Whisper or Parakeet for fully offline speech recognition.</p>
         <!-- What you need and what it costs, under the headline: visitors left over keys and gigabytes they could not price (SUE focus group, 2026-09-27). -->
         <p class="hero-need"><strong>What you need:</strong> a Windows 10 or 11 PC, plus the free offline model (about 1.8 GB) or a cloud speech key. <strong>What it costs:</strong> free for personal use; at work, US$19.99 once or US$1.99 a month per PC.</p>
         <div class="hero-actions">
@@ -929,13 +929,13 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       <div class="feature-grid">
         <div class="card blue">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 16.5v-9Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-          <h3>Two local models</h3>
-          <p><strong>Cohere Transcribe Q5</strong>, 1.65 GiB, accuracy-first. <strong>Whisper Large v3 Turbo Q5</strong>, 591 MiB, broader languages.</p>
+          <h3>Three local models</h3>
+          <p><strong>Cohere Transcribe Q5</strong>, 1.65 GiB, accuracy-first. <strong>Whisper Large v3 Turbo Q5</strong>, 591 MiB, broadest languages. <strong>Parakeet TDT v3 Q5</strong>, 524 MiB, fastest.</p>
         </div>
         <div class="card">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 20h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>One-click model management</h3>
-          <p>Install, cancel or delete either model in Settings. Downloads are verified before use.</p>
+          <p>Install, cancel or delete any model in Settings. Downloads are verified before use.</p>
         </div>
         <div class="card blue">
           <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 3h4v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -1016,7 +1016,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
         <ul>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><b>Local is managed in the app.</b> Pick Cohere or Whisper, then install, cancel, switch, or delete it from the same screen.</span>
+            <span><b>Local is managed in the app.</b> Pick Cohere, Whisper or Parakeet, then install, cancel, switch, or delete it from the same screen.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5 9-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1057,7 +1057,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       <div class="section-head">
         <p class="eyebrow">// providers</p>
         <h2 id="providers-heading">Seven engines. Cloud when you want it, local when you don't.</h2>
-        <p>Use six bring-your-own-key services, or process audio on your PC with an optional Cohere or Whisper model. Switch whenever you like.</p>
+        <p>Use six bring-your-own-key services, or process audio on your PC with an optional Cohere, Whisper or Parakeet model. Switch whenever you like.</p>
       </div>
 
       <div class="provider-strip">
@@ -1224,7 +1224,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       </details>
               <details class="faq-item">
         <summary>Does QuickDictate work offline?</summary>
-        <p class="faq-a">Yes. Choose Local in Settings, install one model, and keep every recording on your PC; no API key or internet connection is needed after installation. QuickDictate offers two local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, and Whisper Large v3 Turbo Q5, a smaller 591 MiB option with broader language coverage.</p>
+        <p class="faq-a">Yes. Choose Local in Settings, install one model, and keep every recording on your PC; no API key or internet connection is needed after installation. QuickDictate offers three local models: Cohere Transcribe Q5, a 1.65 GiB accuracy-first default, Whisper Large v3 Turbo Q5, a 591 MiB option with the broadest language coverage, and Parakeet TDT v3 Q5, a 524 MiB option that is the fastest and covers 25 European languages.</p>
       </details>
               <details class="faq-item">
         <summary>Which speech-to-text providers can I use?</summary>
@@ -1244,11 +1244,11 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
       </details>
               <details class="faq-item">
         <summary>How is QuickDictate different from Windows' built-in dictation or Dragon?</summary>
-        <p class="faq-a">Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or two offline models, typing into any focused app with global hotkeys and per-app profiles.</p>
+        <p class="faq-a">Windows Voice Access dictates offline for free but only through Windows' own speech engine, and Dragon Professional is a paid, Windows-only licensed product with pricing available on request. QuickDictate instead lets you pick from six bring-your-own-key cloud engines or three offline models, typing into any focused app with global hotkeys and per-app profiles.</p>
       </details>
               <details class="faq-item">
         <summary>What does QuickDictate cost?</summary>
-        <p class="faq-a">QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account and no feature held back for a paid tier; using it at work needs a licence, US$19.99 once or US$1.99 a month per PC. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's two offline models are free to download and run, with no key or account needed at all.</p>
+        <p class="faq-a">QuickDictate itself is free for noncommercial use (PolyForm Noncommercial license), with no subscription, no QuickDictate account and no feature held back for a paid tier; using it at work needs a licence, US$19.99 once or US$1.99 a month per PC. If you choose a cloud provider, you pay that provider directly under your own API key at its own pricing; Local mode's three offline models are free to download and run, with no key or account needed at all.</p>
       </details>
       </div>
     </div>
@@ -1258,7 +1258,7 @@ a.lw-parent:hover .lw-tip,a.lw-parent:focus-visible .lw-tip{opacity:1;visibility
   <section class="cta-final container">
     <p class="eyebrow" style="justify-content:center;">// ready when you are</p>
     <h2>Ready to stop typing so much?</h2>
-    <p><span class="js-app-version">v1.2.2</span> is free for personal use, source available, Windows 10 and 11.</p>
+    <p><span class="js-app-version">v1.3.0</span> is free for personal use, source available, Windows 10 and 11.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" data-dl="win-x64" href="https://github.com/LunarWerxs/QuickDictate/releases/latest/download/quickdictate.exe" download aria-label="Download QuickDictate for Windows 10 and 11, 64-bit">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.07 10.34 4.06v7.18H3zM10.34 12.41v7.2L3 18.6v-6.19zM11.49 3.9 21 2.5v8.74h-9.51zM21 12.41v8.74l-9.51-1.36v-7.38z"/></svg>

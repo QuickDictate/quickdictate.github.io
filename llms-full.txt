@@ -42,10 +42,11 @@ routing around any key that is dead or throttled.
 
 ## Local (offline) models
 
-Two options, managed entirely from Settings (install, select, cancel a download, delete):
+Three options, managed entirely from Settings (install, select, cancel a download, delete):
 
 - Cohere Transcribe Q5: 1.65 GiB, the accuracy-first default
-- Whisper Large v3 Turbo Q5: 591 MiB, smaller, with broader language coverage
+- Whisper Large v3 Turbo Q5: 591 MiB, the broadest language coverage
+- Parakeet TDT v3 Q5: 524 MiB, the fastest, 25 European languages
 
 Model weights download on demand into Local AppData rather than shipping inside the
 installer. Downloads run in parallel where supported and are verified before use. The
@@ -76,7 +77,7 @@ provider releases its RAM and VRAM.
    https://github.com/LunarWerxs/QuickDictate/releases/latest
 2. Run it on Windows 10 or 11 (64-bit)
 3. In Settings, either paste an API key for one of the six cloud providers, or switch to
-   Local and install Cohere Transcribe Q5 or Whisper Large v3 Turbo Q5, no key needed
+   Local and install Cohere Transcribe Q5, Whisper Large v3 Turbo Q5 or Parakeet TDT v3 Q5, no key needed
 4. Hold F13 (or tap F14) and start dictating into any window
 
 ## Pricing
@@ -117,7 +118,7 @@ verified.
 
 Is QuickDictate free? Yes for personal and other noncommercial use (PolyForm Noncommercial, source available), no subscription, no account; commercial use is US$19.99 once or US$1.99 a month per installation.
 
-Does QuickDictate work offline? Yes, via Local mode with the Cohere or Whisper model.
+Does QuickDictate work offline? Yes, via Local mode with the Cohere, Whisper or Parakeet model.
 
 Which providers can I use? ElevenLabs, Deepgram, OpenAI, AssemblyAI, DashScope, Google
 Cloud, or Local.

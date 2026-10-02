@@ -4,6 +4,15 @@ Notable changes to the QuickDictate landing page. Newest first. The format loose
 follows [Keep a Changelog](https://keepachangelog.com/). This tracks the *website*;
 the app has its own changelog in [LunarWerxs/QuickDictate](https://github.com/LunarWerxs/QuickDictate/blob/main/CHANGELOG.md).
 
+## 2026-10-02
+
+### Changed
+
+- **App 1.3.0 everywhere the version shows** (hero, closing line, structured data).
+- **Three offline models, not two.** Parakeet TDT v3 (524 MiB, the fastest) joins Cohere and
+  Whisper in the feature card, the FAQ and its structured-data twin, the hero line, the
+  pricing table, and both llms files; Whisper is now described as the broadest-language pick.
+
 ## 2026-09-27
 
 ### Changed

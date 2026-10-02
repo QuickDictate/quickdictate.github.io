@@ -33,6 +33,7 @@ have, not a service it resells. It never bills you and never sees a payment meth
 | The QuickDictate app | $0 for noncommercial use (PolyForm Noncommercial license); commercial US$19.99 once or US$1.99/month per installation | nobody for noncommercial use; LunarWerx Studios for a commercial license |
 | Local mode: Cohere Transcribe Q5 (1.65 GiB) | $0 | nobody, runs on your PC, no key, no account |
 | Local mode: Whisper Large v3 Turbo Q5 (591 MiB) | $0 | nobody, runs on your PC, no key, no account |
+| Local mode: Parakeet TDT v3 Q5 (524 MiB) | $0 | nobody, runs on your PC, no key, no account |
 | Cloud: ElevenLabs | $0 | ElevenLabs, via the API key you supply |
 | Cloud: Deepgram | $0 | Deepgram, via the API key you supply |
 | Cloud: OpenAI | $0 | OpenAI, via the API key you supply |
