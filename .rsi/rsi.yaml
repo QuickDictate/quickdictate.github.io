@@ -1,5 +1,7 @@
 schema: hydra-rsi/1
-# Bytes a visitor can download from the QuickDictate landing site (committed HTML, images, txt, xml at HEAD).
+# Bytes a visitor can download from the QuickDictate landing site: committed HTML, the images the pages load,
+# favicon, robots/sitemap/llms txt+xml and pricing.md at HEAD. Excludes docs/, tools/, scripts/, tmp/, dot-folders
+# and the PNG masters in assets/ that scripts/optimize_images.py derives the served .webp files from.
 # Smaller means a faster first load for the page that sells the product.
 metrics:
   - id: site.shipped_bytes
