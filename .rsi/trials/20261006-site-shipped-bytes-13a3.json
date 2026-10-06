@@ -1,5 +1,88 @@
 {
- "closed": null,
+ "closed": {
+  "a": {
+   "commit": "cebba1f50bdd077651bd6041c7917616ed7ee9ae",
+   "def_hash": "7e260b9a1d39d813",
+   "dirty": false,
+   "id": "m-20261006T105213-bdf4fa",
+   "load_after": 0.473,
+   "load_before": 0.395,
+   "machine": "MPC-HELL",
+   "metric": "site.shipped_bytes",
+   "project": "quickdictate-github-io",
+   "reason": null,
+   "seconds": 0.334,
+   "settings": {
+    "gate": "exact",
+    "kind": "size",
+    "measure_files": {
+     "scripts/rsi/shipped_bytes.py": "0ae6dfe57b9f88ddcfca541953508741453ebf5b"
+    }
+   },
+   "started": "2026-10-06T10:52:13+00:00",
+   "status": "ok",
+   "value": 276276
+  },
+  "applies_if": "\\.png$",
+  "at": "2026-10-06T10:52:27+00:00",
+  "b": {
+   "commit": "429203a9dacffe899325f01ece5f0f5fe14615c3",
+   "def_hash": "7e260b9a1d39d813",
+   "dirty": false,
+   "id": "m-20261006T105222-e208e3",
+   "load_after": 0.529,
+   "load_before": 0.437,
+   "machine": "MPC-HELL",
+   "metric": "site.shipped_bytes",
+   "project": "quickdictate-github-io",
+   "reason": null,
+   "seconds": 0.107,
+   "settings": {
+    "gate": "exact",
+    "kind": "size",
+    "measure_files": {
+     "scripts/rsi/shipped_bytes.py": "0ae6dfe57b9f88ddcfca541953508741453ebf5b"
+    }
+   },
+   "started": "2026-10-06T10:52:22+00:00",
+   "status": "ok",
+   "value": 247263
+  },
+  "guards": [
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "arkitect_gating_errors",
+    "state": "ok"
+   },
+   {
+    "a": 15,
+    "b": 15,
+    "declared": false,
+    "metric": "arkitect_warnings",
+    "state": "ok"
+   },
+   {
+    "a": 165,
+    "b": 165,
+    "declared": false,
+    "metric": "arkitect_no_data",
+    "state": "ok"
+   },
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "deps_total",
+    "state": "ok"
+   }
+  ],
+  "method": "exact: 276276 -> 247263",
+  "note": "og-image.png recompressed losslessly (PIL optimize, pixels identical): -29013 bytes",
+  "pattern": "Lossless PNG recompression with PIL optimize=True on served PNGs",
+  "verdict": "kept"
+ },
  "def_hash": "7e260b9a1d39d813",
  "id": "20261006-site-shipped-bytes-13a3",
  "idea": "Losslessly recompress assets/og-image.png (PIL optimize, same pixels)",
