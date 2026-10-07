@@ -1,0 +1,24 @@
+{
+ "closed": null,
+ "def_hash": "5a64254c5433ebaa",
+ "id": "20261007-arkitect-no-data-8f15",
+ "idea": "make index.html asset refs root-relative so broken-asset-references can judge them (one no-data check might resolve)",
+ "lane": "normal",
+ "metric": "arkitect_no_data",
+ "opened": {
+  "at": "2026-10-07T09:59:05+00:00",
+  "by": "blogi",
+  "commit": "2508ed11ea916a2bdf9ab309228fb69e8a994a2a",
+  "machine": "MPC-HELL"
+ },
+ "pass_line": null,
+ "predict": {
+  "expect": 164.0,
+  "hi": 165.0,
+  "lo": 160.0,
+  "p_keep": 0.1
+ },
+ "probe_minutes": null,
+ "project": "quickdictate-github-io",
+ "schema": "hydra-rsi-trial/1"
+}
