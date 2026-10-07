@@ -1,5 +1,85 @@
 {
- "closed": null,
+ "closed": {
+  "a": {
+   "commit": "2508ed11ea916a2bdf9ab309228fb69e8a994a2a",
+   "def_hash": "5a64254c5433ebaa",
+   "dirty": false,
+   "id": "m-20261007T100226-ef96a2",
+   "load_after": null,
+   "load_before": null,
+   "machine": "MPC-HELL",
+   "metric": "arkitect_no_data",
+   "project": "quickdictate-github-io",
+   "reason": null,
+   "seconds": null,
+   "settings": {
+    "arkitect_checks_total": 1394,
+    "arkitect_tool_version": null,
+    "gate": "exact",
+    "kind": "count",
+    "measure_files": {},
+    "measured_at": "2026-10-07T10:00:55+00:00",
+    "source": "index"
+   },
+   "started": "2026-10-07T10:02:26+00:00",
+   "status": "ok",
+   "value": 165
+  },
+  "applies_if": null,
+  "at": "2026-10-07T10:06:37+00:00",
+  "b": {
+   "commit": "6c7ef8ed996b06874a6be4668f112d19e67bfd2c",
+   "def_hash": "5a64254c5433ebaa",
+   "dirty": false,
+   "id": "m-20261007T100540-d1f9c0",
+   "load_after": null,
+   "load_before": null,
+   "machine": "MPC-HELL",
+   "metric": "arkitect_no_data",
+   "project": "quickdictate-github-io",
+   "reason": null,
+   "seconds": null,
+   "settings": {
+    "arkitect_checks_total": 1394,
+    "arkitect_tool_version": null,
+    "gate": "exact",
+    "kind": "count",
+    "measure_files": {},
+    "measured_at": "2026-10-07T10:05:05+00:00",
+    "source": "index"
+   },
+   "started": "2026-10-07T10:05:40+00:00",
+   "status": "ok",
+   "value": 165
+  },
+  "guards": [
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "arkitect_gating_errors",
+    "state": "ok"
+   },
+   {
+    "a": 15,
+    "b": 15,
+    "declared": false,
+    "metric": "arkitect_warnings",
+    "state": "ok"
+   },
+   {
+    "a": 0,
+    "b": 0,
+    "declared": false,
+    "metric": "deps_total",
+    "state": "ok"
+   }
+  ],
+  "method": "exact: 165 -> 165",
+  "note": "root-relative asset URLs did not let broken-asset-references judge anything; no-data unchanged at 165, structural (static site has no code of the other checks' kinds)",
+  "pattern": null,
+  "verdict": "inconclusive"
+ },
  "def_hash": "5a64254c5433ebaa",
  "id": "20261007-arkitect-no-data-8f15",
  "idea": "make index.html asset refs root-relative so broken-asset-references can judge them (one no-data check might resolve)",
