@@ -5,9 +5,9 @@
 > no QuickDictate account.
 
 Home: https://quickdictate.lunarwerx.com/
-Source: https://github.com/LunarWerxs/QuickDictate
+GitHub (releases and issues): https://github.com/LunarWerxs/QuickDictate
 Download: https://github.com/LunarWerxs/QuickDictate/releases/latest
-License: PolyForm Noncommercial 1.0.0 (free for noncommercial use, source available; commercial use US$19.99 once or US$1.99/month per installation), https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
+License: PolyForm Noncommercial 1.0.0 (free for noncommercial use; commercial use US$19.99 once or US$1.99/month per installation), https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
 Pricing: https://quickdictate.lunarwerx.com/pricing.md
 Maker: LunarWerx Studios, https://lunarwerx.com/
 Last updated: 2026-08-23
@@ -83,7 +83,7 @@ provider releases its RAM and VRAM.
 ## Pricing
 
 QuickDictate is free for personal and any other noncommercial use under the PolyForm
-Noncommercial License 1.0.0, with the source on GitHub; commercial use needs a license
+Noncommercial License 1.0.0; commercial use needs a license
 from LunarWerx Studios, US$19.99 once or US$1.99 a month per installation (releases through v0.8.0 were MIT). No subscription, no
 QuickDictate account, no paid tier. Local mode costs nothing beyond the one-time model
 download. Cloud providers are bring-your-own-key: whatever ElevenLabs, Deepgram, OpenAI,
@@ -116,7 +116,7 @@ verified.
 
 ## FAQ
 
-Is QuickDictate free? Yes for personal and other noncommercial use (PolyForm Noncommercial, source available), no subscription, no account; commercial use is US$19.99 once or US$1.99 a month per installation.
+Is QuickDictate free? Yes for personal and other noncommercial use (PolyForm Noncommercial), no subscription, no account; commercial use is US$19.99 once or US$1.99 a month per installation.
 
 Does QuickDictate work offline? Yes, via Local mode with the Cohere, Whisper or Parakeet model.
 
@@ -125,9 +125,11 @@ Cloud, or Local.
 
 What OS does it support? Windows 10 and Windows 11, 64-bit only.
 
-Does it collect data or require an account? No account, and nothing you dictate is
-collected. The app makes one call of its own: a once-a-day update check carrying a random
-install id, which can be turned off. An anonymized usage rollup (totals and provider mix,
+Does it collect data or require an account? No QuickDictate account, and nothing you
+dictate is collected by QuickDictate. Audio goes only to the speech engine you chose (your
+own provider and key, Connections Dictation if you pick it, or nowhere with Local). The app
+makes one call of its own: a once-a-day update check carrying the app version and nothing
+that identifies you, which can be turned off. An anonymized usage rollup (totals and provider mix,
 no text) is off unless you opt in.
 
 Can I use multiple keys per provider? Yes, with automatic rotation and failover.

@@ -2,11 +2,11 @@
 
 > A tiny Windows tray app that types your speech into any app. Use six bring-your-own-key cloud providers or optional fully offline Cohere and Whisper models. No subscription or account.
 
-QuickDictate is a Windows 10/11 x64 tray app for voice dictation: hold or tap a global hotkey, speak, and the transcript types straight into whatever window has focus, an editor, a chat box, a terminal, or any web form. Choose one of six bring-your-own-key cloud speech-to-text services, or install an optional local model (Cohere, Whisper or Parakeet) and keep every recording on the PC with no key and no internet connection after install. There is no QuickDictate transcription server in the middle: cloud audio goes directly to the provider you picked using your own key, and Local audio never leaves the PC.
+QuickDictate is a Windows 10/11 x64 tray app for voice dictation: hold or tap a global hotkey, speak, and the transcript types straight into whatever window has focus, an editor, a chat box, a terminal, or any web form. Choose one of six bring-your-own-key cloud speech-to-text services, or install an optional local model (Cohere, Whisper or Parakeet) and keep every recording on the PC with no key and no internet connection after install. Cloud audio goes directly to the provider you picked, using your own key, or, only if you choose it, to Connections Dictation, LunarWerx's own optional engine that needs no key; Local audio never leaves the PC.
 
 ## Key facts
-- Free for personal and any other noncommercial use, source available under the PolyForm Noncommercial License 1.0.0 (commercial use: US$19.99 once or US$1.99 a month per installation, https://quickdictate.lunarwerx.com/pricing.md), made by LunarWerx Studios.
-- No subscription and no QuickDictate account. Nothing you dictate leaves the PC except to the provider whose key you supplied. The only call the app makes on its own is a once-a-day update check carrying a random install id; an anonymized usage rollup is available but off by default.
+- Free for personal and any other noncommercial use under the PolyForm Noncommercial License 1.0.0 (commercial use: US$19.99 once or US$1.99 a month per installation, https://quickdictate.lunarwerx.com/pricing.md), made by LunarWerx Studios.
+- No subscription and no QuickDictate account. Nothing you dictate leaves the PC except to the speech engine you chose (and, if you turn on the optional AI polish pass, the transcript text to the AI service you set for it). The only call the app makes on its own is a once-a-day update check carrying the app version and nothing that identifies you; an anonymized usage rollup is available but off by default.
 - Six cloud providers: ElevenLabs, Deepgram, OpenAI, AssemblyAI, and DashScope stream words live; Google Cloud transcribes in batch. All are bring-your-own-key.
 - Local (offline) mode needs no key: choose Cohere Transcribe Q5 (1.65 GiB, accuracy-first default) Whisper Large v3 Turbo Q5 (591 MiB, the broadest language coverage) or Parakeet TDT v3 Q5 (524 MiB, the fastest, 25 European languages), managed entirely from Settings (install, select, cancel, delete).
 - Default hotkeys are F13 to hold and F14 to toggle, both changeable; supports "scratch that" voice correction, a custom fix-list for mishears, and per-app profiles.
@@ -16,6 +16,6 @@ QuickDictate is a Windows 10/11 x64 tray app for voice dictation: hold or tap a 
 
 ## Links
 - Home: https://quickdictate.lunarwerx.com/
-- Source code: https://github.com/LunarWerxs/QuickDictate
+- GitHub (releases and issues): https://github.com/LunarWerxs/QuickDictate
 - Download: https://github.com/LunarWerxs/QuickDictate/releases/latest
 - License: https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE

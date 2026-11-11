@@ -1,7 +1,7 @@
 # QuickDictate - Pricing
 
 **QuickDictate is free for personal and any other noncommercial use (PolyForm
-Noncommercial License 1.0.0, source available).** There is no subscription, no paid tier,
+Noncommercial License 1.0.0).** There is no subscription, no paid tier,
 no QuickDictate account, and no purchase required to use any feature of the app itself.
 Commercial use needs a license from LunarWerx Studios, one per installation; see
 "Commercial / business use" below.
@@ -15,9 +15,9 @@ at checkout where it applies. Card payment via Stripe on Connections' hosted che
   key per installation is emailed on payment. QuickDictate needs no activation: the key is
   your proof of a commercial license.
 - One-time: US$19.99 per installation, a perpetual license covering every release.
-  Buy: https://checkout.connections.icu/licence/a0aab7bb-ba43-4d7f-8772-3c93659bad68
+  Buy: https://checkout.connections.icu/licence/bf8dca80-4036-48ad-91f4-80baa1dbb9e3
 - Monthly: US$1.99 per installation per month, for as long as the subscription runs.
-  Buy: https://checkout.connections.icu/licence/41b7e7f1-67b8-40ba-9d49-7ced20358da7
+  Buy: https://checkout.connections.icu/licence/955db7f6-6561-4a30-85d7-569ea3b3ff20
   Cancel any time, self-serve, at https://checkout.connections.icu/manage (sign in with the email
   used to pay).
 - Break-even between the two: about 10 months.
@@ -26,7 +26,9 @@ at checkout where it applies. Card payment via Stripe on Connections' hosted che
 ## What you actually pay for
 
 QuickDictate is bring-your-own-key: it is a client for speech-to-text services you already
-have, not a service it resells. It never bills you and never sees a payment method.
+have, not a service it resells, and it never sees a payment method. The one optional
+exception is Connections Dictation, which needs no key and runs on the dictation minutes of
+your Connections account (LunarWerx's own service).
 
 | Component | Cost from QuickDictate | Who actually bills you |
 |---|---|---|
@@ -40,6 +42,7 @@ have, not a service it resells. It never bills you and never sees a payment meth
 | Cloud: AssemblyAI | $0 | AssemblyAI, via the API key you supply |
 | Cloud: DashScope | $0 | Alibaba Cloud / DashScope, via the API key you supply |
 | Cloud: Google Cloud | $0 | Google Cloud, via the API key you supply |
+| Cloud: Connections Dictation (optional, no key) | $0 | nobody at QuickDictate; it uses your Connections account's dictation minutes |
 
 "$0 from QuickDictate" means QuickDictate charges nothing and adds no markup on any cloud
 provider's own rates. Check each provider's own pricing page for current cloud API rates.
@@ -60,7 +63,7 @@ https://github.com/LunarWerxs/QuickDictate/blob/main/LICENSE
 - Cloud provider costs are entirely optional and entirely the user's choice. QuickDictate
   works with zero cloud spend if Local mode is selected.
 - No enterprise tier and no team plan; commercial licensing is per installation (above).
-- Source is public on GitHub, so total cost of ownership can be verified directly:
+- Releases, the license text and the issue tracker are public on GitHub:
   https://github.com/LunarWerxs/QuickDictate
 
-Last updated: 2026-09-18
+Last updated: 2026-11-11

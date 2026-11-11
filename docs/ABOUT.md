@@ -6,7 +6,7 @@
 
 ## What it is
 
-A hand-crafted marketing and product showcase site for QuickDictate, a Windows tray app for speech-to-text. Single HTML file with no build process, deployed on GitHub Pages. Explains the app's capabilities (cloud or offline models), unique positioning (no subscription, free for personal use, source available under PolyForm Noncommercial), and links to downloads and source.
+A hand-crafted marketing and product showcase site for QuickDictate, a Windows tray app for speech-to-text. Single HTML file with no build process, deployed on GitHub Pages. Explains the app's capabilities (cloud or offline models), unique positioning (no subscription, free for personal use, free for noncommercial use under PolyForm Noncommercial), and links to downloads.
 
 ## Things not to forget
 
@@ -63,7 +63,7 @@ edit the dossier, not this block. Everything ABOVE the marker is yours.
 - **Final CTA and Discord invite badge** - Closing call-to-action with download button and persistent Discord community invite badge in corner. - `index.html`
 - **Social preview card** - Generated og-image.png (1200x630) used for Twitter, Discord, Slack link previews. Regenerated via tools/og-card.html. - `tools/og-card.html`
 - **404 error page** - Custom 404 for GitHub Pages; directs users back to home. - `404.html`
-- **Pricing page** - Standalone pricing.md spells out that the app itself is free for personal and other noncommercial use (PolyForm Noncommercial 1.0.0, source available; commercial use by separate license from LunarWerx Studios) with no subscription or account, and that users only ever pay their chosen cloud provider directly. - `pricing.md`
+- **Pricing page** - Standalone pricing.md spells out that the app itself is free for personal and other noncommercial use (PolyForm Noncommercial 1.0.0; commercial use by separate license from LunarWerx Studios) with no subscription or account, and that users only ever pay their chosen cloud provider directly. - `pricing.md`
 - **AI-agent discovery files (llms.txt)** - llms.txt and llms-full.txt give AI crawlers/agents a machine-readable product summary per the llms.txt standard, entirely separate from the human-facing index.html copy. - `llms.txt`, `llms-full.txt`
 - **Structured data / SEO schema markup** - JSON-LD blocks (SoftwareApplication, Organization, WebSite, BreadcrumbList, FAQPage) embedded in the page head for search-engine rich results; not mentioned anywhere in the original entry. - `index.html`
 - **Site changelog** - CHANGELOG.md tracks the marketing site's own edit history (separate from the app's changelog), contradicting the entry's own gaps claim that no changelog exists for the site. - `CHANGELOG.md`
